@@ -27,7 +27,7 @@ Search/filter inventories based on queried fields.
 Optional:
 - Original Price (price when phone is bought from the owner)
 - Source (phone used to belong to whom..)
-- Percent (how many percent new of the used-phone)
+- Status (Number): how many percent(%) new of the used-phone
 - Description note about product
 - Thumbnail (upload 1 photo for thumbnail view)
 - Many photos may be inplemented if possible..
