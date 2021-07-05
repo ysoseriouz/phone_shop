@@ -1,101 +1,101 @@
-brand,model,memory_size,manufactoring_year,os_version,color,price,original_price,source,stock,sell,reserve,status,description
-Samsung,Galaxy Note20,256,2017,Android 7.0,White,16015000,,unknown,6,0,6,Sold out,
-Apple,iPhone 6s Plus,16,2015,iOS 12.5,Black,12495000,,store,12,12,0,Active,
-OPPO,Oppo A5,128,2016,ColorOS 8.1,Black,10150000,,unknown,37,24,13,Inactive,Some notes
-Samsung,Galaxy A22,128,2017,Android 11,Purple,15900000,,retailer,8,5,3,Active,
-Xiaomi,Redmi Note 10T,32,2018,Android 8.0,Black,9765000,,store,27,22,5,Active,Phone just likes new
-Samsung,Galaxy A12,32,2016,Android 11,Black,15580000,,unknown,18,9,9,Active,
-Samsung,Galaxy M32,256,2018,Android 9.0,Green,8960000,,store,18,5,13,Inactive,
-HTC,HTC 10,256,2015,Android 8.1,Red,19530000,,store,46,19,27,Active,I don't know and don't care
-OPPO,Oppo A54,32,2014,ColorOS 7.2,Green,13565000,,retailer,8,6,2,Active,
-Samsung,Galaxy A12,128,2014,Android 9.0,Red,16615000,,retailer,28,26,2,Active,
-Apple,iPhone 5,64,2020,iOS 11.4,Green,16910000,,unknown,17,1,16,Active,
-OPPO,Oppo F19,64,2020,ColorOS 7.2,Black,16325000,7584999,store,47,3,44,Active,
-OPPO,Oppo F19,64,2017,ColorOS 7.2,Green,15835000,,store,11,7,4,Inactive,Some notes
-Xiaomi,Redmi Note 10T,32,2017,Android 10.0,Red,16455000,,unknown,23,18,5,Inactive,
-Xiaomi,Redmi Note 10T,16,2015,Android 8.1,Green,18415000,,store,1,0,1,Sold out,
-Apple,iPhone X,64,2020,iOS 11.4,Green,13090000,,retailer,0,0,0,Out of stock,
-OPPO,Oppo A54,32,2015,ColorOS 8.1,Green,12150000,,retailer,31,13,18,Inactive,Some notes
-Xiaomi,Redmi Note 10 5G,32,2015,Android 11,Purple,15565000,,retailer,27,18,9,Active,
-Samsung,Galaxy A22,256,2018,Android 8.0,Blue,12360000,,unknown,32,22,10,Active,
-Xiaomi,Mi 10 Pro,256,2018,Android 11,Cyan,13630000,13360000,unknown,0,0,0,Out of stock,
-Apple,iPhone 7 Plus,64,2020,iOS 14.6,Blue,12690000,,unknown,40,8,32,Active,
-Xiaomi,Redmi Note 10T,16,2016,Android 9.0,White,11325000,,unknown,48,44,4,Active,
-Apple,iPhone X,32,2016,iOS 12.5,Blue,10565000,7849999,store,9,4,5,Active,
-OPPO,Oppo F19,64,2020,ColorOS 7.2,Cyan,15930000,8049999,retailer,12,11,1,Inactive,Phone just likes new
-Xiaomi,Redmi Note 10T,64,2014,Android 8.1,Green,11625000,,unknown,33,15,18,Inactive,Some notes
-HTC,HTC 10,128,2018,Android 10.0,Black,18780000,,store,41,32,9,Active,
-OPPO,Oppo Reno 3 Pro,16,2016,ColorOS 11,Red,15080000,11270000,unknown,49,20,29,Inactive,
-HTC,HTC 10,256,2016,Android 11,Black,14235000,,retailer,2,1,1,Active,
-OPPO,Oppo A5,256,2017,ColorOS 11,Cyan,12665000,8980000,retailer,2,1,1,Active,
-Samsung,Galaxy A22,32,2018,Android 11,Purple,14725000,7914999,retailer,46,15,31,Active,
-HTC,HTC Butterfly 3,64,2016,Android 10.0,Blue,17760000,,unknown,22,1,21,Active,
-Xiaomi,Mi 10 Pro,64,2018,Android 8.1,Red,18730000,,store,35,22,13,Active,Some notes
-OPPO,Oppo A5,64,2019,ColorOS 7.2,Blue,13035000,,retailer,17,3,14,Active,
-Xiaomi,Redmi Note 10 5G,128,2016,Android 11,Red,12465000,,store,30,14,16,Inactive,
-Xiaomi,Mi 10 Pro,16,2017,Android 9.0,White,17915000,,store,25,25,0,Inactive,
-HTC,HTC 10,32,2015,Android 10.0,Green,15930000,,unknown,9,6,3,Active,
-OPPO,Oppo A54,32,2016,ColorOS 8.1,Cyan,19255000,,store,26,24,2,Active,
-Xiaomi,Mi 10 Pro,128,2019,Android 9.0,Black,13450000,,unknown,29,5,24,Active,
-Samsung,Galaxy Note20,16,2020,Android 8.1,Cyan,19380000,14260000,retailer,25,23,2,Active,
-Samsung,Galaxy M32,32,2016,Android 8.0,Yellow,19510000,,unknown,22,16,6,Active,
-Apple,iPhone 4S,16,2020,iOS 11.4,Purple,17840000,,retailer,10,4,6,Inactive,Phone just likes new
-Apple,iPhone 6,128,2019,iOS 12.5,Yellow,17060000,,store,28,19,9,Active,
-Samsung,Galaxy A12,32,2017,Android 8.0,Silver,12865000,,retailer,15,5,10,Inactive,Phone just likes new
-OPPO,Oppo A54,64,2014,ColorOS 8.1,Red,15860000,8435000,retailer,3,3,0,Active,
-OPPO,Oppo A5,64,2015,ColorOS 8.1,Green,15470000,,store,7,1,6,Active,
-Apple,iPhone 4S,16,2016,iOS 14.6,Blue,12535000,,retailer,37,11,26,Active,
-OPPO,Oppo Reno 3 Pro,128,2019,ColorOS 11,Cyan,9990000,,store,20,7,13,Active,
-Samsung,Galaxy A22,16,2015,Android 9.0,Red,11110000,,retailer,18,18,0,Active,
-Samsung,Galaxy A12,128,2017,Android 8.0,Purple,16725000,,store,12,4,8,Active,
-HTC,HTC Butterfly 3,64,2019,Android 8.0,Yellow,9660000,,unknown,42,31,11,Active,
-Xiaomi,Redmi Note 10 5G,16,2019,Android 9.0,Red,14515000,13600000,retailer,8,5,3,Active,
-Xiaomi,Mi 10 Pro,16,2018,Android 8.0,Green,19680000,,unknown,18,2,16,Inactive,
-OPPO,Oppo A5,32,2014,ColorOS 8.1,Silver,10635000,,unknown,28,15,13,Active,
-Samsung,Galaxy A12,128,2020,Android 8.0,White,10165000,,unknown,42,19,23,Active,
-OPPO,Oppo F19,128,2014,ColorOS 7.2,Green,13080000,,store,48,11,37,Active,
-Apple,iPhone 6,32,2017,iOS 12.5,Cyan,16395000,12965000,unknown,48,10,38,Active,
-HTC,HTC Butterfly 3,16,2017,Android 11,White,12900000,,retailer,7,2,5,Inactive,
-Samsung,Galaxy A12,64,2015,Android 11,Black,15065000,,store,18,17,1,Active,
-OPPO,Oppo Reno 3 Pro,128,2015,ColorOS 7.2,Silver,18855000,,unknown,29,2,27,Active,
-OPPO,Oppo Reno 3 Pro,16,2016,ColorOS 7.2,Black,16510000,14930000,unknown,39,7,32,Active,I don't know and don't care
-Samsung,Galaxy A12,16,2017,Android 7.0,White,14355000,13225000,store,1,0,1,Sold out,
-HTC,HTC Butterfly 3,128,2015,Android 8.1,Yellow,10815000,7379999,unknown,14,6,8,Inactive,
-Apple,iPhone 7 Plus,32,2016,iOS 13.7,Green,17670000,,unknown,9,6,3,Active,
-HTC,HTC 10,32,2018,Android 11,Silver,17930000,10765000,retailer,30,17,13,Active,
-Apple,iPhone 6s Plus,64,2020,iOS 12.5,Blue,12350000,,unknown,48,31,17,Active,Phone just likes new
-HTC,HTC 10,256,2014,Android 8.1,White,11040000,,retailer,27,0,27,Sold out,
-Samsung,Galaxy A22,64,2020,Android 9.0,Red,11015000,,retailer,17,5,12,Active,
-Apple,iPhone 4S,32,2018,iOS 14.6,Yellow,10745000,7884999,retailer,37,14,23,Active,I don't know and don't care
-HTC,HTC 10,32,2014,Android 11,Cyan,9205000,,unknown,43,14,29,Active,
-Xiaomi,Redmi Note 10T,256,2015,Android 8.1,White,13155000,,unknown,33,3,30,Active,
-Samsung,Galaxy Note20,128,2014,Android 8.0,Yellow,9180000,,unknown,37,25,12,Active,
-Xiaomi,Mi 10 Pro,256,2014,Android 10.0,Yellow,13170000,,unknown,35,34,1,Inactive,
-Xiaomi,Redmi Note 10 5G,32,2019,Android 8.0,Blue,16670000,,store,42,29,13,Active,
-OPPO,Oppo F19,128,2014,ColorOS 7.2,Red,13190000,,retailer,22,1,21,Active,Some notes
-Xiaomi,Redmi Note 10T,32,2020,Android 11,White,14835000,8940000,unknown,48,11,37,Active,
-Apple,iPhone 5,32,2019,iOS 12.5,Black,14395000,,unknown,0,0,0,Out of stock,I don't know and don't care
-Apple,iPhone 7,128,2019,iOS 14.6,White,11695000,,unknown,12,5,7,Active,
-Samsung,Galaxy A12,64,2016,Android 11,Green,8505000,,unknown,13,12,1,Active,
-OPPO,Oppo F19,128,2014,ColorOS 7.2,Yellow,15450000,9705000,retailer,7,3,4,Inactive,
-Samsung,Galaxy A22,64,2016,Android 10.0,Blue,8990000,7444999,retailer,24,10,14,Active,
-OPPO,Oppo Reno 3 Pro,128,2016,ColorOS 11,Cyan,19710000,,retailer,31,12,19,Active,
-HTC,HTC 10,64,2017,Android 8.0,Yellow,14140000,7934999,unknown,12,12,0,Active,Some notes
-Apple,iPhone 5,128,2014,iOS 12.5,Black,11470000,,retailer,29,5,24,Active,
-Apple,iPhone 5,16,2017,iOS 13.7,Silver,19405000,,unknown,9,3,6,Active,
-OPPO,Oppo A5,256,2014,ColorOS 8.1,Black,16680000,,unknown,40,9,31,Active,Some notes
-Apple,iPhone 8,256,2014,iOS 12.5,Cyan,13480000,,store,13,4,9,Active,
-Xiaomi,Redmi Note 10T,256,2016,Android 8.0,Red,18520000,,unknown,35,0,35,Inactive,
-OPPO,Oppo A54,256,2014,ColorOS 11,Green,12395000,,unknown,34,3,31,Active,
-HTC,HTC 10,16,2018,Android 8.1,Yellow,14645000,,store,38,28,10,Inactive,I don't know and don't care
-Samsung,Galaxy M32,128,2020,Android 11,White,14105000,,retailer,0,0,0,Out of stock,
-Xiaomi,Redmi Note 10T,32,2014,Android 9.0,Blue,13515000,,unknown,34,9,25,Active,
-Samsung,Galaxy A12,64,2020,Android 8.1,Silver,18410000,,store,37,16,21,Active,Phone just likes new
-Apple,iPhone 4S,64,2020,iOS 13.7,Purple,12270000,,store,25,19,6,Active,
-Samsung,Galaxy A12,256,2020,Android 7.0,Silver,19370000,,store,11,4,7,Active,
-HTC,HTC Butterfly 3,32,2017,Android 8.0,Blue,18135000,13470000,store,47,39,8,Active,Some notes
-Xiaomi,Redmi Note 10 5G,128,2017,Android 11,White,14740000,,retailer,5,2,3,Active,
-Xiaomi,Redmi Note 10T,16,2019,Android 9.0,Yellow,9270000,,store,21,11,10,Active,
-Samsung,Galaxy M32,32,2014,Android 10.0,Purple,17035000,,unknown,4,4,0,Active,
-HTC,HTC Butterfly 3,128,2014,Android 7.0,Cyan,13755000,,store,37,32,5,Active,
-OPPO,Oppo A54,32,2015,ColorOS 7.2,Red,8490000,,retailer,27,10,17,Active,
+brand,model,memory_size,manufactoring_year,os_version,color,price,original_price,source,status,description
+Apple,iPhone 6,64,2020,iOS 14.6,Cyan,13170000,,retailer,Sold,
+HTC,HTC Butterfly 3,64,2015,Android 8.0,White,8030000,,store,Sold,Some notes
+OPPO,Oppo F19,32,2018,ColorOS 8.1,Silver,18910000,,store,Active,
+OPPO,Oppo A5,16,2014,ColorOS 7.2,Yellow,14905000,,retailer,Sold,
+Apple,iPhone X,32,2017,iOS 11.4,Silver,12520000,,store,Inactive,
+HTC,HTC 10,256,2017,Android 10.0,Green,16140000,,unknown,Inactive,Phone just likes new
+Samsung,Galaxy A22,128,2015,Android 7.0,Yellow,8650000,,retailer,Sold,
+OPPO,Oppo A5,32,2015,ColorOS 11,Purple,18005000,,store,Active,Phone just likes new
+OPPO,Oppo Reno 3 Pro,16,2016,ColorOS 11,Blue,16570000,,store,Inactive,
+OPPO,Oppo A54,32,2019,ColorOS 7.2,Blue,13965000,,store,Active,
+OPPO,Oppo A54,16,2020,ColorOS 7.2,Cyan,19825000,,unknown,Active,
+HTC,HTC Butterfly 3,256,2016,Android 8.1,Red,16770000,,retailer,Inactive,Some notes
+OPPO,Oppo F19,128,2014,ColorOS 7.2,Yellow,9685000,8925000,unknown,Inactive,I don't know and don't care
+OPPO,Oppo A54,16,2014,ColorOS 7.2,Green,18925000,,retailer,Inactive,
+Samsung,Galaxy Note20,16,2017,Android 9.0,Cyan,14595000,,store,Active,
+HTC,HTC Butterfly 3,256,2020,Android 8.1,Blue,8705000,,unknown,Sold,
+Samsung,Galaxy A22,32,2018,Android 9.0,Red,12635000,,retailer,Inactive,
+Xiaomi,Redmi Note 10T,128,2014,Android 10.0,Blue,19155000,18220000,retailer,Sold,
+Xiaomi,Redmi Note 10 5G,32,2015,Android 7.0,White,12735000,,retailer,Inactive,Some notes
+HTC,HTC 10,64,2015,Android 11,Purple,12340000,,unknown,Sold,
+Apple,iPhone X,32,2015,iOS 13.7,Black,11515000,11165000,store,Sold,
+Xiaomi,Redmi Note 10 5G,128,2017,Android 11,Green,9395000,,retailer,Active,
+Xiaomi,Redmi Note 10 5G,64,2014,Android 11,Green,8665000,,retailer,Inactive,
+Apple,iPhone 4S,16,2020,iOS 11.4,Green,18895000,,store,Sold,
+Xiaomi,Redmi Note 10T,16,2020,Android 8.0,Black,12760000,,retailer,Sold,
+Xiaomi,Redmi Note 10 5G,256,2014,Android 11,Red,11715000,,unknown,Active,Some notes
+HTC,HTC Butterfly 3,128,2018,Android 10.0,Red,18025000,,store,Active,
+OPPO,Oppo A5,16,2014,ColorOS 11,Silver,9030000,,unknown,Active,
+Xiaomi,Redmi Note 10T,64,2014,Android 7.0,Yellow,19065000,,retailer,Inactive,Some notes
+Samsung,Galaxy M32,256,2020,Android 9.0,Green,14260000,,retailer,Active,
+Apple,iPhone X,32,2017,iOS 13.7,Black,8680000,,unknown,Inactive,
+OPPO,Oppo Reno 3 Pro,16,2016,ColorOS 7.2,Silver,17390000,,retailer,Active,Phone just likes new
+Xiaomi,Mi 10 Pro,16,2015,Android 8.0,Black,19030000,16510000,store,Active,
+HTC,HTC 10,128,2019,Android 9.0,Green,19590000,,store,Sold,
+Samsung,Galaxy M32,128,2019,Android 8.1,Black,15015000,,store,Active,
+Xiaomi,Redmi Note 10 5G,32,2018,Android 11,White,13490000,,retailer,Sold,
+Xiaomi,Redmi Note 10 5G,256,2017,Android 10.0,Cyan,13555000,,store,Active,
+HTC,HTC 10,64,2020,Android 8.0,Blue,13970000,,store,Active,
+Samsung,Galaxy Note20,64,2020,Android 7.0,Green,14955000,,retailer,Sold,
+HTC,HTC Butterfly 3,32,2015,Android 9.0,Cyan,13470000,,store,Active,Phone just likes new
+Xiaomi,Mi 10 Pro,16,2018,Android 7.0,Green,13135000,,store,Sold,
+Xiaomi,Redmi Note 10T,256,2016,Android 11,Blue,12895000,,unknown,Active,
+Apple,iPhone X,32,2020,iOS 11.4,Red,14075000,,store,Active,I don't know and don't care
+Xiaomi,Mi 10 Pro,128,2019,Android 8.0,Black,19405000,,retailer,Sold,
+Apple,iPhone 5,256,2015,iOS 11.4,Blue,19725000,18310000,unknown,Inactive,Phone just likes new
+Samsung,Galaxy A12,32,2014,Android 11,Cyan,16190000,,retailer,Inactive,
+Xiaomi,Mi 10 Pro,256,2016,Android 8.1,Green,17310000,,retailer,Sold,Some notes
+HTC,HTC Butterfly 3,64,2020,Android 10.0,White,11190000,,retailer,Sold,Phone just likes new
+HTC,HTC 10,256,2014,Android 10.0,Purple,11920000,11840000,unknown,Inactive,
+OPPO,Oppo Reno 3 Pro,128,2015,ColorOS 7.2,Cyan,10595000,,store,Inactive,
+OPPO,Oppo A5,64,2019,ColorOS 8.1,Yellow,10065000,,store,Active,
+Samsung,Galaxy A22,32,2017,Android 8.1,Red,13485000,11935000,unknown,Active,I don't know and don't care
+Xiaomi,Redmi Note 10T,64,2020,Android 9.0,Green,13875000,,store,Inactive,I don't know and don't care
+Samsung,Galaxy Note20,256,2016,Android 11,Blue,15040000,,unknown,Active,
+Samsung,Galaxy M32,16,2017,Android 8.0,Black,14370000,,retailer,Active,Some notes
+Apple,iPhone 6,32,2017,iOS 11.4,Cyan,13285000,,unknown,Inactive,
+Xiaomi,Mi 10 Pro,16,2016,Android 9.0,Silver,14050000,,unknown,Sold,
+HTC,HTC 10,16,2016,Android 8.0,White,14725000,,retailer,Sold,
+Samsung,Galaxy M32,64,2015,Android 8.0,White,12100000,,store,Active,
+Samsung,Galaxy Note20,32,2019,Android 8.0,Silver,14530000,12055000,unknown,Inactive,
+OPPO,Oppo A5,32,2014,ColorOS 8.1,Blue,11430000,,store,Inactive,
+Samsung,Galaxy Note20,128,2020,Android 8.1,Cyan,19570000,13710000,retailer,Inactive,
+Xiaomi,Redmi Note 10 5G,32,2014,Android 10.0,Black,16445000,,unknown,Active,
+HTC,HTC Butterfly 3,128,2019,Android 10.0,Purple,14585000,,store,Sold,
+HTC,HTC Butterfly 3,16,2016,Android 8.1,Silver,9650000,,retailer,Inactive,
+Xiaomi,Redmi Note 10T,128,2018,Android 7.0,Blue,11170000,,store,Inactive,Phone just likes new
+Samsung,Galaxy Note20,128,2016,Android 7.0,Purple,19295000,,unknown,Inactive,
+HTC,HTC 10,32,2017,Android 8.1,Blue,9205000,,store,Inactive,I don't know and don't care
+Samsung,Galaxy A22,32,2015,Android 8.0,Green,17695000,10185000,unknown,Active,
+OPPO,Oppo A5,16,2018,ColorOS 11,Cyan,18720000,,retailer,Active,
+HTC,HTC Butterfly 3,256,2014,Android 8.0,Blue,8650000,,retailer,Active,
+OPPO,Oppo A54,64,2020,ColorOS 11,Green,11675000,8330000,unknown,Sold,
+Apple,iPhone 4S,128,2018,iOS 12.5,Red,18930000,8815000,retailer,Active,
+Samsung,Galaxy A12,32,2015,Android 10.0,Cyan,13630000,7439999,store,Sold,
+Samsung,Galaxy M32,128,2017,Android 10.0,Blue,19000000,,store,Active,Phone just likes new
+Apple,iPhone 7,16,2015,iOS 12.5,Cyan,13275000,,retailer,Active,
+Samsung,Galaxy A12,256,2020,Android 7.0,White,14675000,7419999,unknown,Active,
+Apple,iPhone 7 Plus,32,2017,iOS 13.7,Red,15775000,10245000,retailer,Active,Some notes
+HTC,HTC 10,32,2017,Android 7.0,Blue,16965000,,store,Inactive,
+Apple,iPhone 8,16,2019,iOS 14.6,Cyan,10320000,,unknown,Inactive,
+Apple,iPhone 6,32,2014,iOS 11.4,Silver,10955000,,store,Sold,
+Samsung,Galaxy A12,16,2016,Android 11,Green,18875000,,retailer,Active,
+Apple,iPhone X,128,2019,iOS 13.7,Silver,15020000,11850000,store,Sold,
+Samsung,Galaxy M32,16,2016,Android 11,Yellow,17645000,14795000,store,Active,
+OPPO,Oppo F19,32,2020,ColorOS 7.2,Silver,15980000,,store,Inactive,
+HTC,HTC Butterfly 3,64,2016,Android 7.0,Silver,11775000,,store,Active,
+Samsung,Galaxy M32,32,2014,Android 11,Silver,15100000,,retailer,Inactive,
+OPPO,Oppo A54,32,2015,ColorOS 11,Silver,18555000,,retailer,Inactive,
+Xiaomi,Redmi Note 10 5G,64,2018,Android 10.0,Cyan,11070000,,retailer,Inactive,
+OPPO,Oppo F19,16,2019,ColorOS 11,Black,13300000,,store,Sold,
+Xiaomi,Redmi Note 10T,128,2016,Android 8.0,Cyan,13025000,,retailer,Inactive,
+HTC,HTC 10,256,2015,Android 11,Purple,18590000,,unknown,Active,
+Xiaomi,Mi 10 Pro,256,2015,Android 7.0,Blue,15005000,,unknown,Active,
+HTC,HTC 10,128,2015,Android 8.1,Blue,14645000,,store,Inactive,
+Samsung,Galaxy A12,16,2020,Android 9.0,Red,16135000,,unknown,Active,
+OPPO,Oppo A54,128,2019,ColorOS 8.1,Blue,10700000,8255000,retailer,Sold,
+OPPO,Oppo Reno 3 Pro,64,2019,ColorOS 8.1,Black,11490000,,store,Inactive,
+OPPO,Oppo Reno 3 Pro,16,2017,ColorOS 11,Yellow,18805000,,unknown,Active,Some notes
+OPPO,Oppo A54,16,2018,ColorOS 11,Black,11965000,,store,Active,I don't know and don't care
+Samsung,Galaxy M32,16,2015,Android 11,White,11835000,10285000,unknown,Sold,

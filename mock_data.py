@@ -31,21 +31,11 @@ price_list = float_range(8, 20, price_step)
 source_list = ["retailer", "store", "unknown"]
 stock_list = list(range(50))
 desc_list = ["Some notes", "Phone just likes new", "I don't know and don't care"]
-
-def get_status(stock, sell, reserve):
-    if random.uniform(0, 1) > 0.8:
-        return "Inactive"
-    if stock > 0 and sell > 0:
-        return "Active"
-    elif stock > 0 and sell == 0:
-        return "Sold out"
-    elif stock == 0 and sell == 0 and reserve == 0:
-        return "Out of stock"
+status_list = ["Active", "Inactive", "Sold"]
 
 def mock_data(N=1, filename="mock_data"):
-    header = ["brand", "model", "memory_size", "manufactoring_year",
-              "os_version", "color", "price", "original_price", "source",
-              "stock", "sell", "reserve", "status", "description"]
+    header = ["brand", "model", "memory_size", "manufactoring_year", "os_version",
+              "color", "price", "original_price", "source", "status", "description"]
     header_s = ','.join(header) + "\n"
     with open(filename, "w") as f:
         f.write(header_s)
@@ -66,15 +56,11 @@ def mock_data(N=1, filename="mock_data"):
             og_price_list = float_range(7, p, price_step)
             original_price = int(random.choice(og_price_list) * unit) if random.uniform(0, 1) > 0.8 else None
             source = random.choice(source_list)
-            stock = random.choice(stock_list)
-            reserve = random.choice(list(range(stock + 1)))
-            sell = stock - reserve
-            status = get_status(stock, sell, reserve)
+            status = random.choice(status_list)
             desc = random.choice(desc_list) if random.uniform(0, 1) > 0.8 else None
 
-            data = [brand, model, memory_size, manu_year,
-                    os, color, price, original_price, source,
-                    stock, sell, reserve, status, desc]
+            data = [brand, model, memory_size, manu_year, os,
+                    color, price, original_price, source, status, desc]
             data_s = ','.join('' if e is None else str(e) for e in data) + "\n"
             
             f.write(data_s)
