@@ -30,8 +30,7 @@ Search/filter inventories based on queried fields.
 
 Optional:
 
-- Stock, sell, reserve amount: Stock = sell + reserve (sell: product shows out for sale, reserve: product kept in storage)
-- Status (current status of inventory: active, inactive, sold-out, out-of-stock)
+- Status (current status of inventory: active, inactive, sold)
 - Original Price (price when phone is bought from the owner)
 - Source (phone used to belong to whom..)
 - Description note about product
@@ -62,9 +61,8 @@ In filter box:
 - Drop list of memory size: <16GB, 16GB -> 64GB, 64GB->256GB, > 256GB. Or custom 'from - to' with fix 'GB' unit.
 - Manufactoring year: 'from - to' (default 'to': 2021)
 - Status:
-  - Active: currently have in stock and able to sell
-  - Inactive: soft delete, reserve in stock
-  - Sold out: no more product to sell, only reserved products in stock (stock = N, sell = 0, reserve = N)
-  - Out-of-stock: no more product in stock (stock = 0, sell = 0, reserve = 0)
+  - Active: currently in stock to sell
+  - Inactive: reserve in stock, not to sell
+  - Sold: used to be in stock, be bought
 
 When user 'add new inventory', user choose 'brand' and 'model' in drop list, if new brand or new model -> user can choose 'other' and type new brand or model inside -> update DB new brand and model corresponding to the brand.
