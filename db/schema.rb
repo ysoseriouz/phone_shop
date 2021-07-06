@@ -10,18 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_06_043030) do
+ActiveRecord::Schema.define(version: 2021_07_06_093159) do
 
   create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "username", null: false
     t.string "password", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "role_id", null: false
+    t.index ["role_id"], name: "index_accounts_on_role_id"
   end
 
   create_table "albums", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "thumbnail_id", null: false
+    t.index ["thumbnail_id"], name: "index_albums_on_thumbnail_id"
   end
 
   create_table "brands", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -41,18 +45,27 @@ ActiveRecord::Schema.define(version: 2021_07_06_043030) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "model_id", null: false
+    t.bigint "album_id", null: false
+    t.integer "status"
+    t.index ["album_id"], name: "index_inventories_on_album_id"
+    t.index ["model_id"], name: "index_inventories_on_model_id"
   end
 
   create_table "models", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "brand_id", null: false
+    t.index ["brand_id"], name: "index_models_on_brand_id"
   end
 
   create_table "photos", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "path", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "album_id", null: false
+    t.index ["album_id"], name: "index_photos_on_album_id"
   end
 
   create_table "roles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -61,4 +74,10 @@ ActiveRecord::Schema.define(version: 2021_07_06_043030) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "accounts", "roles"
+  add_foreign_key "albums", "photos", column: "thumbnail_id"
+  add_foreign_key "inventories", "albums"
+  add_foreign_key "inventories", "models"
+  add_foreign_key "models", "brands"
+  add_foreign_key "photos", "albums"
 end
