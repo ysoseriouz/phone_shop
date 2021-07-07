@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-$brand_model = {
+@brand_model = {
   Samsung: ["Galaxy A22", "Galaxy M32", "Galaxy A12", "Galaxy Note20"],
   Apple: ["iPhone 4S", "iPhone 5", "iPhone 6", "iPhone 6s Plus",
           "iPhone 7", "iPhone 7 Plus", "iPhone 8", "iPhone X"],
@@ -13,10 +13,10 @@ $brand_model = {
   Xiaomi: ["Redmi Note 10T", "Redmi Note 10 5G", "Mi 10 Pro"],
   HTC: ["HTC 10", "HTC Butterfly 3"]
 }
-$android = ["Android 11", "Android 10.0", "Android 8.1",
+@android = ["Android 11", "Android 10.0", "Android 8.1",
   "Android 9.0", "Android 8.0", "Android 7.0"]
-$ios = ["iOS 14.6", "iOS 12.5", "iOS 13.7", "iOS 11.4"]
-$colorOS = ["ColorOS 11", "ColorOS 7.2", "ColorOS 8.1"]
+@ios = ["iOS 14.6", "iOS 12.5", "iOS 13.7", "iOS 11.4"]
+@colorOS = ["ColorOS 11", "ColorOS 7.2", "ColorOS 8.1"]
 
 def create_photo(album)
   path = Faker::File.file_name(dir: "photos", ext: "png")
@@ -27,7 +27,7 @@ def create_photo(album)
 end
 
 def create_model(brand)
-  model_name = $brand_model[brand.name.to_sym].sample
+  model_name = @brand_model[brand.name.to_sym].sample
   return Model.find_or_create_by(name: model_name, brand_id: brand.id)
 end
 
@@ -38,11 +38,11 @@ def create_inventory(model, album)
   os = nil
   case model.brand.name.to_sym
   when :Apple
-    os = $ios.sample
+    os = @ios.sample
   when :OPPO
-    os = $colorOS.sample
+    os = @colorOS.sample
   else
-    os = $android.sample
+    os = @android.sample
   end
 
   color = Faker::Color.color_name
@@ -62,16 +62,17 @@ end
 
 # 1 sample
 role = Role.find_or_create_by(name: "Manager")
-account = Account.find_or_create_by(username: "thanhnt", password: "123456", role_id: role.id)
+account = Account.find_or_create_by(username: "thanhnt", encrypted_password: "123456",
+                                    email: "thanhnt@gmail.com", role: role)
 
-$brand_model.keys.each do |brand|
+@brand_model.keys.each do |brand|
   Brand.create(name: brand.to_s)
 end
 
 # Many samples
-$brands = Brand.all
+@brands = Brand.all
 100.times {
-  brand = $brands.sample
+  brand = @brands.sample
   model = create_model(brand)
   album = Album.create
   1.upto(rand(0..5)) { create_photo(album) }
