@@ -36,7 +36,7 @@ def create_inventory(model, album)
   manu_year = rand(2014..2021)
 
   os = nil
-  case model.brand.name
+  case model.brand.name.to_sym
   when :Apple
     os = $ios.sample
   when :OPPO
