@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_06_093159) do
+ActiveRecord::Schema.define(version: 2021_07_07_024609) do
 
   create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "username", null: false
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2021_07_06_093159) do
   create_table "albums", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "thumbnail_id", null: false
+    t.bigint "thumbnail_id"
     t.index ["thumbnail_id"], name: "index_albums_on_thumbnail_id"
   end
 
