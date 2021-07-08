@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_07_145340) do
+ActiveRecord::Schema.define(version: 2021_07_07_142731) do
 
   create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "username", null: false
@@ -43,9 +43,7 @@ ActiveRecord::Schema.define(version: 2021_07_07_145340) do
     t.bigint "model_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "thumbnail_id"
     t.index ["model_id"], name: "index_inventories_on_model_id"
-    t.index ["thumbnail_id"], name: "index_inventories_on_thumbnail_id"
   end
 
   create_table "models", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -73,7 +71,6 @@ ActiveRecord::Schema.define(version: 2021_07_07_145340) do
 
   add_foreign_key "accounts", "roles"
   add_foreign_key "inventories", "models"
-  add_foreign_key "inventories", "photos", column: "thumbnail_id"
   add_foreign_key "models", "brands"
   add_foreign_key "photos", "inventories"
 end

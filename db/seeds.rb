@@ -21,9 +21,6 @@
 def create_photo(inventory)
   path = Faker::File.file_name(dir: "photos", ext: "png")
   photo = Photo.create(path: path, inventory: inventory)
-  if inventory.thumbnail_id.nil?
-    inventory.update(thumbnail_id: photo.id)
-  end
 end
 
 def create_model(brand)
