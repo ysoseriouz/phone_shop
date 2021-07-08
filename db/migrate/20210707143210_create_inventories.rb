@@ -7,7 +7,7 @@ class CreateInventories < ActiveRecord::Migration[6.1]
       t.string :color, null: false
       t.decimal :price, null: false, unsigned: true
       t.decimal :original_price, unsigned: true
-      t.integer :status, default: 0   # Active
+      t.integer :status, null: false, default: 0   # Active
       t.string :source
       t.text :description
       t.references :model, null: false, foreign_key: true

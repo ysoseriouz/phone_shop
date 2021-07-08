@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2021_07_07_145340) do
     t.string "color", null: false
     t.decimal "price", precision: 10, null: false, unsigned: true
     t.decimal "original_price", precision: 10, unsigned: true
-    t.integer "status", default: 0
+    t.integer "status", default: 0, null: false
     t.string "source"
     t.text "description"
     t.bigint "model_id", null: false
