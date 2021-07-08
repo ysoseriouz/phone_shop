@@ -23,13 +23,6 @@ ActiveRecord::Schema.define(version: 2021_07_07_145340) do
     t.index ["username"], name: "index_accounts_on_username", unique: true
   end
 
-  create_table "albums", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "thumbnail_id"
-    t.index ["thumbnail_id"], name: "index_albums_on_thumbnail_id"
-  end
-
   create_table "brands", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -48,11 +41,11 @@ ActiveRecord::Schema.define(version: 2021_07_07_145340) do
     t.string "source"
     t.text "description"
     t.bigint "model_id", null: false
-    t.bigint "album_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["album_id"], name: "index_inventories_on_album_id"
+    t.bigint "thumbnail_id"
     t.index ["model_id"], name: "index_inventories_on_model_id"
+    t.index ["thumbnail_id"], name: "index_inventories_on_thumbnail_id"
   end
 
   create_table "models", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -65,10 +58,10 @@ ActiveRecord::Schema.define(version: 2021_07_07_145340) do
 
   create_table "photos", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "path", null: false
-    t.bigint "album_id", null: false
+    t.bigint "inventory_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["album_id"], name: "index_photos_on_album_id"
+    t.index ["inventory_id"], name: "index_photos_on_inventory_id"
   end
 
   create_table "roles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -79,9 +72,8 @@ ActiveRecord::Schema.define(version: 2021_07_07_145340) do
   end
 
   add_foreign_key "accounts", "roles"
-  add_foreign_key "albums", "photos", column: "thumbnail_id"
-  add_foreign_key "inventories", "albums"
   add_foreign_key "inventories", "models"
+  add_foreign_key "inventories", "photos", column: "thumbnail_id"
   add_foreign_key "models", "brands"
-  add_foreign_key "photos", "albums"
+  add_foreign_key "photos", "inventories"
 end

@@ -18,11 +18,11 @@
 @ios = ["iOS 14.6", "iOS 12.5", "iOS 13.7", "iOS 11.4"]
 @colorOS = ["ColorOS 11", "ColorOS 7.2", "ColorOS 8.1"]
 
-def create_photo(album)
+def create_photo(inventory)
   path = Faker::File.file_name(dir: "photos", ext: "png")
-  photo = Photo.create(path: path, album_id: album.id)
-  if album.thumbnail_id.nil?
-    album.update(thumbnail_id: photo.id)
+  photo = Photo.create(path: path, inventory: inventory)
+  if inventory.thumbnail_id.nil?
+    inventory.update(thumbnail_id: photo.id)
   end
 end
 
@@ -31,7 +31,7 @@ def create_model(brand)
   return Model.find_or_create_by(name: model_name, brand_id: brand.id)
 end
 
-def create_inventory(model, album)
+def create_inventory(model)
   memory_size = [16, 32, 64, 128, 256].sample
   manu_year = rand(2014..2021)
 
@@ -54,9 +54,8 @@ def create_inventory(model, album)
   status = rand(0..2)
   desc = ["Some notes", "Phone just likes new", "I don't know and don't care"].sample
 
-  return Inventory.create(album: album, model: model, memory_size: memory_size,
-                          manufactoring_year: manu_year, os_version: os,
-                          color: color, price: price, original_price: original_price,
+  return Inventory.create(model: model, memory_size: memory_size, manufactoring_year: manu_year,
+                          os_version: os, color: color, price: price, original_price: original_price,
                           source: source, status: status, description: desc)
 end
 
@@ -74,7 +73,6 @@ end
 100.times {
   brand = @brands.sample
   model = create_model(brand)
-  album = Album.create
-  1.upto(rand(0..5)) { create_photo(album) }
-  create_inventory(model, album) 
+  inventory = create_inventory(model)
+  1.upto(rand(0..5)) { create_photo(inventory) }
 }

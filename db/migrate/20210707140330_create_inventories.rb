@@ -11,7 +11,6 @@ class CreateInventories < ActiveRecord::Migration[6.1]
       t.string :source
       t.text :description
       t.references :model, null: false, foreign_key: true
-      t.references :album, null: false, foreign_key: true
 
       t.timestamps
     end
