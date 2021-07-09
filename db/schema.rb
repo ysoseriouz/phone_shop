@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(version: 2021_07_09_005916) do
     t.integer "manufactoring_year", null: false, unsigned: true
     t.string "os_version", null: false
     t.string "color", null: false
-    t.decimal "price", precision: 10, null: false, unsigned: true
-    t.decimal "original_price", precision: 10, unsigned: true
+    t.decimal "price", precision: 10, scale: 2, null: false, unsigned: true
+    t.decimal "original_price", precision: 10, scale: 2, unsigned: true
     t.integer "status", default: 0, null: false
     t.string "source"
     t.text "description"
