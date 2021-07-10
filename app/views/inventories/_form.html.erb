@@ -1,0 +1,79 @@
+<%= form_with model: inventory do |form| %>
+  <% if inventory.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(inventory.errors.count, "error") %> prohibited this friend from being saved:</h2>
+
+      <ul>
+        <% inventory.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= form.label :brand_id %>
+    <%= form.collection_select :brand_id, Brand.order(:name), :id, :name, autofocus: true, class: "form-control" %>
+  </div><br/>
+
+  <div class="field form-group">
+    <%= form.label :model_id %>
+    <%= form.grouped_collection_select :model_id, Brand.order(:name), :models, :name, :id, :name, autofocus: true, class: "form-control"%>
+  </div><br/>
+
+  <div class="field form-group">
+    <%= form.label :memory_size, "Memory Size" %>
+    <%= form.number_field :memory_size, min: 0, placeholder: "GB", class: "form-control" %>
+  </div><br/>
+
+  <div class="field form-group">
+    <%= form.label :memory_size, "Manufactoring Year" %>
+    <%= form.select :manufactoring_year, manufactoring_year_range, class: "form-control" %>
+  </div><br/>
+  
+  <div class="field form-group">
+    <%= form.label :os_version, "OS Version" %>
+    <%= form.text_field :os_version, autocomplete: "on", class: "form-control" %>
+  </div><br/>
+
+  <div class="field form-group">
+    <%= form.label :color, "Color" %>
+    <%= form.text_field :color, autocomplete: "on", class: "form-control" %>
+  </div><br/>
+
+  <div class="field form-group">
+    <%= form.label :price, "Price" %>
+    <%= form.number_field :price, min: 0,
+        class: "form-control", placeholder: "VND" %>
+  </div><br/>
+
+  <div class="field form-group">
+    <%= form.label :price, "Original Price" %>
+    <%= form.number_field :original_price, min: 0, class: "form-control", placeholder: "VND" %>
+  </div><br/>
+
+  <div class="field form-group">
+    <%= form.label :source %>
+    <%= form.text_field :source, autocomplete: "on", class: "form-control" %>
+  </div><br/>
+
+  <div class="field form-group">
+    <%= form.label :status %>
+    <%= form.select :status, inventory_status_options(inventory) %>
+  </div><br/>
+
+  <div class="field form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: "form-control", placeholder: "-- Some notes --" %>
+  </div><br/>
+
+  <div class="field form-group">
+    <%= form.file_field :images, class: "form-control" %>
+  </div><br/><br/>
+
+  <div class="action">
+    <%= link_to "Cancel", inventories_path,
+        class: "btn btn-outline-secondary" %>
+    <%= form.submit class: "btn btn-primary", value: "Save" %>
+  </div>
+<% end %>
