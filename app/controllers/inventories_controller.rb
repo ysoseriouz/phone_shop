@@ -7,6 +7,7 @@ class InventoriesController < ApplicationController
 
   def new
     @inventory = Inventory.new
+    @brands = Brand.all
   end
 
   def create
@@ -20,9 +21,11 @@ class InventoriesController < ApplicationController
   end
 
   def edit
+    @brands = Brand.all
   end
 
   def update
+    @brands = Brand.all
     if @inventory.update(inventory_params)
       redirect_to edit_inventory_path(@inventory)
     else
@@ -43,7 +46,7 @@ class InventoriesController < ApplicationController
 
   def inventory_params
     params.require(:inventory).permit(
-      :model, :memory_size, :manufactoring_year,
+      :model_id, :memory_size, :manufactoring_year,
       :os_version, :color, :price, :original_price,
       :source, :status, :description, images: []
     )

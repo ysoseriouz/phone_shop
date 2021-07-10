@@ -32,7 +32,7 @@
             <td><%= inventory.status.capitalize %></td>
             <td><%= format_price(inventory.price) %></td>
             <td>
-              <%= link_to "Destroy", root_path, method: :delete,
+              <%= link_to "Destroy", inventory, method: :delete,
                   data: { confirm: 'Are you sure?' },
                   class: "btn btn-outline-danger btn-sm" %>
               <%= link_to "Edit", edit_inventory_path(inventory),
