@@ -5,5 +5,5 @@ class Inventory < ApplicationRecord
     active: 0,
     sold: 1,
     inactive: 2
-  }
+  }, _prefix: true
 end
