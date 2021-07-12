@@ -1,2 +1,8 @@
-<h2>Edit Inventory <%= @inventory.id %></h2>
-<%= render "form", inventory: @inventory %>
+<div class="card">
+  <div class="card-header">
+    <h2>ID: <%= @inventory.id %></h2>
+  </div>
+  <div class="card-body">
+    <%= render "form", inventory: @inventory %>
+  </div>
+</div>
