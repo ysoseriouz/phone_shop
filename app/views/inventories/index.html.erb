@@ -18,28 +18,25 @@
 
     <tbody>
       <% @inventories.each do |inventory| %>
-        <%# <% if friend.user == current_user %>
-        <% if true %>
-          <tr>
-            <td><%= inventory.id %></td>
-            <td>Thumnail here</td>
-            <td><%= inventory.model.brand.name %></td>
-            <td><%= inventory.model.name %></td>
-            <td><%= inventory.memory_size %></td>
-            <td><%= inventory.manufactoring_year %></td>
-            <td><%= inventory.os_version %></td>
-            <td><%= inventory.color.capitalize %></td>
-            <td><%= inventory.status.capitalize %></td>
-            <td><%= format_price(inventory.price) %></td>
-            <td>
-              <%= link_to "Destroy", inventory, method: :delete,
-                  data: { confirm: 'Are you sure?' },
-                  class: "btn btn-outline-danger btn-sm" %>
-              <%= link_to "Edit", edit_inventory_path(inventory),
-                  class: "btn btn-outline-primary btn-sm" %>
-            </td>
-          </tr>
-        <% end %>
+        <tr>
+          <td><%= inventory.id %></td>
+          <td>Thumnail here</td>
+          <td><%= inventory.model.brand.name %></td>
+          <td><%= inventory.model.name %></td>
+          <td><%= inventory.memory_size %></td>
+          <td><%= inventory.manufactoring_year %></td>
+          <td><%= inventory.os_version %></td>
+          <td><%= inventory.color.capitalize %></td>
+          <td><%= inventory.status.capitalize %></td>
+          <td><%= format_price(inventory.price) %></td>
+          <td>
+            <%= link_to "Destroy", inventory, method: :delete,
+                data: { confirm: 'Are you sure?' },
+                class: "btn btn-outline-danger btn-sm" %>
+            <%= link_to "Edit", edit_inventory_path(inventory),
+                class: "btn btn-outline-primary btn-sm" %>
+          </td>
+        </tr>
       <% end %>
     </tbody>
   </table>
