@@ -21,11 +21,9 @@ class InventoriesController < ApplicationController
   end
 
   def edit
-    @brands = Brand.all
   end
 
   def update
-    @brands = Brand.all
     if @inventory.update(inventory_params)
       redirect_to edit_inventory_path(@inventory)
     else

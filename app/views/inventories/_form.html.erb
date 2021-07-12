@@ -12,68 +12,67 @@
   <% end %>
 
   <div class="field form-group">
-    <%= form.label :brand_id %>
-    <%= form.collection_select :brand_id, Brand.order(:name), :id, :name, autofocus: true, class: "form-control" %>
-  </div><br/>
-
-  <div class="field form-group">
-    <%= form.label :model_id %>
+    <%= form.label :model_id, class: "form-label" %>
     <%= form.grouped_collection_select :model_id, Brand.order(:name), :models, :name, :id, :name, autofocus: true, class: "form-control"%>
   </div><br/>
 
   <div class="field form-group">
-    <%= form.label :memory_size, "Memory Size" %>
+    <%= form.label :memory_size, "Memory Size", class: "form-label" %>
     <%= form.number_field :memory_size, min: 0, placeholder: "GB", class: "form-control" %>
   </div><br/>
 
   <div class="field form-group">
-    <%= form.label :memory_size, "Manufactoring Year" %>
+    <%= form.label :memory_size, "Manufactoring Year", class: "form-label" %>
     <%= form.select :manufactoring_year, manufactoring_year_range, class: "form-control" %>
   </div><br/>
   
   <div class="field form-group">
-    <%= form.label :os_version, "OS Version" %>
+    <%= form.label :os_version, "OS Version", class: "form-label" %>
     <%= form.text_field :os_version, autocomplete: "on", class: "form-control" %>
   </div><br/>
 
   <div class="field form-group">
-    <%= form.label :color, "Color" %>
+    <%= form.label :color, "Color", class: "form-label" %>
     <%= form.text_field :color, autocomplete: "on", class: "form-control" %>
   </div><br/>
 
   <div class="field form-group">
-    <%= form.label :price, "Price" %>
+    <%= form.label :price, "Price", class: "form-label" %>
     <%= form.number_field :price, min: 0,
         class: "form-control", placeholder: "VND" %>
   </div><br/>
 
   <div class="field form-group">
-    <%= form.label :price, "Original Price" %>
+    <%= form.label :price, "Original Price", class: "form-label" %>
     <%= form.number_field :original_price, min: 0, class: "form-control", placeholder: "VND" %>
   </div><br/>
 
   <div class="field form-group">
-    <%= form.label :source %>
+    <%= form.label :source, class: "form-label" %>
     <%= form.text_field :source, autocomplete: "on", class: "form-control" %>
   </div><br/>
 
   <div class="field form-group">
-    <%= form.label :status %>
+    <%= form.label :status, class: "form-label" %>
     <%= form.select :status, inventory_status_options(inventory) %>
   </div><br/>
 
   <div class="field form-group">
-    <%= form.label :description %>
+    <%= form.label :description, class: "form-label" %>
     <%= form.text_area :description, class: "form-control", placeholder: "-- Some notes --" %>
   </div><br/>
 
   <div class="field form-group">
-    <%= form.file_field :images, class: "form-control" %>
+    <%= form.label :images, "Upload Images", class: "form-label" %>
+    <%= form.file_field :images, multiple: true, class: "form-control" %>
   </div><br/><br/>
 
   <div class="action">
     <%= link_to "Cancel", inventories_path,
         class: "btn btn-outline-secondary" %>
+    <% unless inventory.id.nil? %>
+      <%= link_to "Destroy", inventory, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+    <% end %>
     <%= form.submit class: "btn btn-primary", value: "Save" %>
   </div>
 <% end %>
