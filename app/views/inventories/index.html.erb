@@ -1,0 +1,43 @@
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr class="table-dark">
+        <th>ID</th>
+        <th>Photo</th>
+        <th>Brand</th>
+        <th>Model</th>
+        <th>Memory (GB)</th>
+        <th>Manufactoring Year</th>
+        <th>OS</th>
+        <th>Color</th>
+        <th>Status</th>
+        <th>Price</th>
+        <th colspan=2>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @inventories.each do |inventory| %>
+        <tr>
+          <td><%= inventory.id %></td>
+          <td>Thumnail here</td>
+          <td><%= inventory.model.brand.name %></td>
+          <td><%= inventory.model.name %></td>
+          <td><%= inventory.memory_size %></td>
+          <td><%= inventory.manufactoring_year %></td>
+          <td><%= inventory.os_version %></td>
+          <td><%= inventory.color.capitalize %></td>
+          <td><%= inventory.status.capitalize %></td>
+          <td><%= format_price(inventory.price) %></td>
+          <td>
+            <%= link_to "Destroy", inventory, method: :delete,
+                data: { confirm: 'Are you sure?' },
+                class: "btn btn-outline-danger btn-sm" %>
+            <%= link_to "Edit", edit_inventory_path(inventory),
+                class: "btn btn-outline-primary btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
