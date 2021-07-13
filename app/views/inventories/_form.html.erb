@@ -13,7 +13,7 @@
 
   <div class="field form-group">
     <%= form.label :model_id, class: "form-label" %>
-    <%= form.grouped_collection_select :model_id, Brand.order(:name), :models, :name, :id, :name, autofocus: true, class: "form-control"%>
+    <%= form.grouped_collection_select :model_id, Brand.order(:name), :models, :name, :id, :name, {}, { autofocus: true, class: "form-control" }%>
   </div><br/>
 
   <div class="field form-group">
@@ -23,7 +23,7 @@
 
   <div class="field form-group">
     <%= form.label :memory_size, "Manufactoring Year", class: "form-label" %>
-    <%= form.select :manufactoring_year, manufactoring_year_range, class: "form-control" %>
+    <%= form.select :manufactoring_year, manufactoring_year_range, {}, { class: "form-control" } %>
   </div><br/>
   
   <div class="field form-group">
@@ -54,7 +54,7 @@
 
   <div class="field form-group">
     <%= form.label :status, class: "form-label" %>
-    <%= form.select :status, inventory_status_options(inventory) %>
+    <%= form.select :status, inventory_status_options(inventory), {}, { class: "form-control" } %>
   </div><br/>
 
   <div class="field form-group">
