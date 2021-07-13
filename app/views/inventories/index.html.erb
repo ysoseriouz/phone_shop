@@ -30,8 +30,8 @@
           <td><%= inventory.memory_size %></td>
           <td><%= inventory.manufactoring_year %></td>
           <td><%= inventory.os_version %></td>
-          <td><%= inventory.color.capitalize %></td>
-          <td><%= inventory.status.capitalize %></td>
+          <td><%= inventory.color.titleize %></td>
+          <td><%= inventory.status.titleize %></td>
           <td><%= format_price(inventory.price) %></td>
           <td>
             <%= link_to "Destroy", inventory, method: :delete,
