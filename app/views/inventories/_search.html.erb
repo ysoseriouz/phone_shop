@@ -1,0 +1,48 @@
+<%= form_with url: inventories_path, method: :get do |form| %>
+
+  <div class="field form-group">
+    <%= form.label :id, "ID", class: "form-label" %>
+    <%= form.text_field :id, placeholder: "VD: 10", class: "form-control" %>
+  </div><br/>
+
+  <div class="field form-group">
+    <%= form.label :model_id, class: "form-label" %>
+    <%= form.grouped_collection_select :model_id, Brand.order(:name), :models, :name, :id, :name, { prompt: "-- Select model --" }, { class: "form-control" } %>
+  </div><br/>
+
+  <div class="field form-group">
+    <%= form.label :memory_size, "Memory Size", class: "form-label" %>
+    <%= form.select :memory_size, memory_size_options, { prompt: "-- Select range --" }, { class: "form-control" } %>
+  </div><br/>
+
+  <div class="field form-group">
+    <%= form.label :manufactoring_year_lb, "Manufactoring Year", class: "form-label" %>
+    <%= form.select :manufactoring_year_lb, manufactoring_year_range, { prompt: "-- From --"}, { class: "form-control" } %>
+    <%= form.select :manufactoring_year_ub, manufactoring_year_range(Time.zone.now.year), { prompt: "-- To --" }, { class: "form-control" }%>
+  </div><br/>
+
+  <div class="field form-group">
+    <%= form.label :price, "Price", class: "form-label" %>
+    <%= form.select :price, price_options, { prompt: "-- Select range --" }, { class: "form-control" } %>
+  </div><br/>
+
+  <div class="field form-group">
+    <%= form.label :status, class: "form-label" %>
+    <%= form.select :status, inventory_status_options, { prompt: "-- Select status --" }, { class: "form-control" } %>
+  </div><br/>
+  
+  <div class="field form-group">
+    <%= form.label :os_version, "OS Version", class: "form-label" %>
+    <%= form.text_field :os_version, autocomplete: "on", class: "form-control" %>
+  </div><br/>
+
+  <div class="field form-group">
+    <%= form.label :color, "Color", class: "form-label" %>
+    <%= form.text_field :color, autocomplete: "on", class: "form-control" %>
+  </div><br/>
+
+  <div class="action">
+    <%= link_to "Cancel", inventories_path, class: "btn btn-outline-secondary" %>
+    <%= form.submit class: "btn btn-primary", value: "Search" %>
+  </div>
+<% end %>
