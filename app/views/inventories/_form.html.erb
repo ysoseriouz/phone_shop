@@ -23,7 +23,7 @@
 
   <div class="field form-group">
     <%= form.label :memory_size, "Manufactoring Year", class: "form-label" %>
-    <%= form.select :manufactoring_year, manufactoring_year_range, {}, { class: "form-control" } %>
+    <%= form.select :manufactoring_year, manufactoring_year_range(inventory.manufactoring_year), {}, { class: "form-control" } %>
   </div><br/>
   
   <div class="field form-group">
