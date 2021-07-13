@@ -13,7 +13,7 @@
 
   <div class="field form-group">
     <%= form.label :model_id, class: "form-label" %>
-    <%= form.grouped_collection_select :model_id, Brand.order(:name), :models, :name, :id, :name, {}, { autofocus: true, class: "form-control" } %>
+    <%= form.select :model_id, model_groups_options(inventory.model_id), {}, { autofocus: true, class: "form-control" } %>
   </div><br/>
 
   <div class="field form-group">

@@ -14,6 +14,13 @@ module InventoriesHelper
       }, selected=selected)
   end
 
+  def model_groups_options(selected=nil)
+    option_groups_from_collection_for_select(
+      Brand.order(:name), :models, :name,
+      :id, :name, selected=selected
+    )
+  end
+
   def memory_size_options
     Inventory.memory_size_ranges.keys
   end
