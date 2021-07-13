@@ -22,10 +22,10 @@ module InventoriesHelper
   end
 
   def memory_size_options
-    Inventory.memory_size_ranges.keys
+    ["< 16 GB", "16 -> 64 GB", "64 -> 256 GB", "> 256 GB"]
   end
 
   def price_options
-    Inventory.price_ranges.keys
+    ["< 10 tr", "10 -> 15 tr", "15 -> 20 tr", "20 -> 30 tr", "> 30 tr"]
   end
 end
