@@ -1,6 +1,6 @@
 module InventoriesHelper
   def format_price(price)
-    number_to_currency(price, unit: "VND", format: "%n %u", precision: 0)
+    number_to_currency(price, format: "%n", precision: 0)
   end
 
   def manufactoring_year_range(selected=nil)
