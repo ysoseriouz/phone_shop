@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+
+    <div id="accordion" class="col">
+      <% @brands.each do |brand| %>
+        <div class="card">
+          <div class="card-header" id="heading<%= brand.id %>">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#collapse<%= brand.id %>" aria-expanded="true" aria-controls="collapse<%= brand.id %>">
+                <%= brand.name %>
+              </button>
+            </h5>
+          </div>
+          <div id="collapse<%= brand.id %>" class="collapse show" aria-labelledby="heading<%= brand.id %>" data-parent="#accordion">
+            <div class="card-body">
+              <% brand.models.each do |model| %>
+                <p><%= model.name %></p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <h4>Create new brand</h4>
+        </div>
+        <div class="card-body">
+          <%= render "brand_form" %>
+        </div>
+      </div>
+      <br/><br/>
+      <div class="card">
+        <div class="card-header">
+          <h4>Create new model</h4>
+        </div>
+        <div class="card-body">
+          <%= render "model_form" %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

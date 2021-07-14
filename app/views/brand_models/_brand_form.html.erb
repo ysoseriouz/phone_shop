@@ -1,0 +1,21 @@
+<%= form_with model: @brand, url: brand_models_create_brand_path, method: :post do |form| %>
+  <% if @brand.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@brand.errors.count, "error") %> prohibited this brand from being saved:</h2>
+
+      <ul>
+        <% @brand.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group col mb-4">
+    <%= form.label :name, "Brand Name", class: "form-label" %>
+    <%= form.text_field :name, placeholder: "Apple", class: "form-control" %>
+  </div>
+  <div class="action">
+    <%= form.submit class: "btn btn-primary", value: "Create" %>
+  </div>
+<% end %>
