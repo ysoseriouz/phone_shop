@@ -24,7 +24,7 @@ class Inventory < ApplicationRecord
   scope :by_manufactoring_year_ub, -> (year) { where "manufactoring_year <= ?", year }
   scope :by_status, -> (status) { where status: status }
   scope :by_os_version, -> (os) { where "os_version LIKE ?", "%" + os + "%" }
-  scope :by_color, -> (color) { where "color LIKE ?", "%" + color + "%" }
+  scope :by_color, -> (color) { where "color LIKE ?", "%" + color.downcase + "%" }
 
   def self.search(query_params)
     query_params = query_params.delete_if { |k, v| v.blank? }

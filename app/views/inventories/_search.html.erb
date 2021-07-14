@@ -3,7 +3,7 @@
   <div class="row row-cols-3 gy-4">
     <div class="field form-group col">
       <%= form.label :id, "ID", class: "form-label" %>
-      <%= form.text_field :id, value: params[:id], autocomplete: "on", placeholder: "VD: 10", class: "form-control" %>
+      <%= form.text_field :id, value: params[:id], autocomplete: "on", placeholder: "1", class: "form-control" %>
     </div>
 
     <div class="field form-group col">
@@ -41,12 +41,12 @@
     
     <div class="field form-group col">
       <%= form.label :os_version, "OS Version", class: "form-label" %>
-      <%= form.text_field :os_version, value: params[:os_version], autocomplete: "on", class: "form-control" %>
+      <%= form.text_field :os_version, value: params[:os_version], autocomplete: "on", placeholder: "iOS 14.6", class: "form-control" %>
     </div>
 
     <div class="field form-group col">
       <%= form.label :color, "Color", class: "form-label" %>
-      <%= form.text_field :color, value: params[:color], autocomplete: "on", class: "form-control" %>
+      <%= form.text_field :color, value: params[:color], autocomplete: "on", placeholder: "Black", class: "form-control" %>
     </div>
 
     <div class="action col d-flex justify-content-evenly align-items-end">
