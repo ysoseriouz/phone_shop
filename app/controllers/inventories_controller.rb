@@ -2,7 +2,7 @@ class InventoriesController < ApplicationController
   before_action :set_inventory, only: [:edit, :update, :destroy]
 
   def index
-    @inventories = Inventory.search(search_params).order(:id)
+    @inventories = Inventory.search(search_params).order(:id).page(params[:page])
   end
 
   def new
