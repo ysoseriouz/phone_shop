@@ -23,12 +23,14 @@ class BrandModelsController < ApplicationController
     @brand = Brand.find(params[:id])
     if @brand.update(name: params[:new_name])
       redirect_to brand_models_index_path
+    end
   end
 
   def update_model
     @model = Model.find(params[:id])
     if @model.update(name: params[:new_name])
       redirect_to brand_models_index_path
+    end
   end
 
   def destroy_brand
