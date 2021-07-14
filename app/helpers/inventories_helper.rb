@@ -22,10 +22,11 @@ module InventoriesHelper
   end
 
   def memory_size_options
-    ["<= 16 GB", "16 -> 64 GB", "64 -> 256 GB", ">= 256 GB"]
+    ["Under 16GB", "From 16GB to 64GB", "From 64GB to 256GB", "Over 256GB"]
   end
 
   def price_options
-    ["<= 10 tr", "10 -> 15 tr", "15 -> 20 tr", "20 -> 30 tr", ">= 30 tr"]
+    ["Under 10 million VND", "From 10 to 15 million VND", "From 15 to 20 million VND",
+      "From 20 to 30 million VND", "Over 30 million VND"]
   end
 end
