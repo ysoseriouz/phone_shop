@@ -27,8 +27,9 @@ class Inventory < ApplicationRecord
   scope :by_color, -> (color) { where "color LIKE ?", "%" + color.downcase + "%" }
 
   def self.search(query_params)
+    # return find(query_params[:id]) unless query_params[:id].blank?
     query_params = query_params.delete_if { |k, v| v.blank? }
-    
+
     inventories = self.where(nil)
     query_params.each do |k, v|
       inventories = inventories.public_send("by_#{k}", v)
@@ -39,13 +40,13 @@ class Inventory < ApplicationRecord
   def self.by_memory_size(query)
     attribute = "memory_size"
     case query
-    when "<= 16 GB"
+    when "Under 16GB"
       return range_query(attribute, 0, 16)
-    when "16 -> 64 GB"
+    when "From 16GB to 64GB"
       return range_query(attribute, 16, 64)
-    when "64 -> 256 GB"
+    when "From 64GB to 256GB"
       return range_query(attribute, 64, 256)
-    when ">= 256 GB"
+    when "Over 256GB"
       return range_query(attribute, 256)
     end
   end
@@ -54,15 +55,15 @@ class Inventory < ApplicationRecord
     attribute = "price"
     unit = 1e6
     case query
-    when "<= 10 tr"
+    when "Under 10 million VND"
       return range_query(attribute, 0, 10 * unit)
-    when "10 -> 15 tr"
+    when "From 10 to 15 million VND"
       return range_query(attribute, 10 * unit, 15 * unit)
-    when "15 -> 20 tr"
+    when "From 15 to 20 million VND"
       return range_query(attribute, 15 * unit, 20 * unit)
-    when "20 -> 30 tr"
+    when "From 20 to 30 million VND"
       return range_query(attribute, 20 * unit, 30 * unit)
-    when ">= 30 tr"
+    when "Over 30 million VND"
       return range_query(attribute, 30 * unit)
     end
   end
