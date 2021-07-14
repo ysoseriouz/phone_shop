@@ -62,7 +62,7 @@ end
 
 # Many samples
 @brands = Brand.all
-100.times {
+1000.times {
   brand = @brands.sample
   model = create_model(brand)
   inventory = create_inventory(model)
