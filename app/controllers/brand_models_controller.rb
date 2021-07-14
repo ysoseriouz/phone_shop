@@ -5,6 +5,13 @@ class BrandModelsController < ApplicationController
     @model = Model.new
   end
 
+  def create_brand
+    @brand = Brand.new(brand_params)
+    @brand.save
+
+    redirect_to brand_models_index_path
+  end
+
   def create_model
     @model = Model.new(model_params)
     @model.save
@@ -12,11 +19,16 @@ class BrandModelsController < ApplicationController
     redirect_to brand_models_index_path
   end
 
-  def create_brand
-    @brand = Brand.new(brand_params)
-    @brand.save
+  def update_brand
+    @brand = Brand.find(params[:id])
+    if @brand.update(name: params[:new_name])
+      redirect_to brand_models_index_path
+  end
 
-    redirect_to brand_models_index_path
+  def update_model
+    @model = Model.find(params[:id])
+    if @model.update(name: params[:new_name])
+      redirect_to brand_models_index_path
   end
 
   def destroy_brand

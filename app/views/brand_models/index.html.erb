@@ -5,16 +5,20 @@
       <% @brands.each do |brand| %>
         <div class="card">
           <div class="card-header" id="heading<%= brand.id %>">
-            <h5 class="mb-0">
+            <div class="d-flex justify-content-between align-items-center">
               <button class="btn btn-link" data-toggle="collapse" data-target="#collapse<%= brand.id %>" aria-expanded="true" aria-controls="collapse<%= brand.id %>">
                 <%= brand.name %>
               </button>
-            </h5>
+              <%= link_to "Destroy", "destroy_brand/#{brand.id}", method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-danger btn-sm" %>
+            </div>
           </div>
           <div id="collapse<%= brand.id %>" class="collapse show" aria-labelledby="heading<%= brand.id %>" data-parent="#accordion">
             <div class="card-body">
               <% brand.models.each do |model| %>
-                <p><%= model.name %></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <p><%= model.name %></p>
+                  <%= link_to "Destroy", "destroy_model/#{model.id}", method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger btn-sm" %>
+                </div>
               <% end %>
             </div>
           </div>
@@ -30,8 +34,8 @@
         <div class="card-body">
           <%= render "brand_form" %>
         </div>
-      </div>
-      <br/><br/>
+      </div><br/><br/>
+
       <div class="card">
         <div class="card-header">
           <h4>Create new model</h4>
@@ -39,7 +43,26 @@
         <div class="card-body">
           <%= render "model_form" %>
         </div>
-      </div>
+      </div><br/><br/>
+
+      <div class="card">
+        <div class="card-header">
+          <h4>Edit brand</h4>
+        </div>
+        <div class="card-body">
+          <%= render "model_form" %>
+        </div>
+      </div><br/><br/>
+
+      <div class="card">
+        <div class="card-header">
+          <h4>Edit model</h4>
+        </div>
+        <div class="card-body">
+          <%= render "model_form" %>
+        </div>
+      </div><br/><br/>
+
     </div>
 
   </div>
