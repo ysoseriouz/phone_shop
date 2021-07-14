@@ -2,7 +2,7 @@
   <%= render "search" %>
 </div><br/>
 
-<%= paginate @inventories, window: 1, outer_window: 1 %>
+<%= paginate @inventories, window: 2, outer_window: 2 %>
 <div class="container-fluid table-responsive">
   <table class="table table-striped table-bordered table-hover">
     <thead>
@@ -43,5 +43,5 @@
     </tbody>
   </table>
   <br/>
-  <%= paginate @inventories, window: 1, outer_window: 1 %>
+  <%= paginate @inventories, window: 2, outer_window: 2 %>
 </div>
