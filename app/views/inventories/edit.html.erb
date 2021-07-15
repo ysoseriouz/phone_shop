@@ -7,4 +7,10 @@
       <%= render "form", inventory: @inventory %>
     </div>
   </div>
+
+  <% if @inventory.images.attached? %>
+    <% @inventory.images.each do |image| %>
+      <%= image_tag image.variant(resize_to_limit: [400, 400]) %>
+    <% end %>
+  <% end %>
 </div>
