@@ -29,4 +29,8 @@ module InventoriesHelper
     ["Under 10 million VND", "From 10 to 15 million VND", "From 15 to 20 million VND",
       "From 20 to 30 million VND", "Over 30 million VND"]
   end
+
+  def create_thumbnail(inventory)
+    inventory.images.order(:created_at).first.variant(resize_to_limit: [100, 100])
+  end
 end
