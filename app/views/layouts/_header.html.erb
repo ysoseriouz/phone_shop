@@ -22,7 +22,7 @@
 							<%= link_to "Log Out", destroy_account_session_path, method: :delete, class: "nav-link" %>
 						</li>
 					</ul>
-					<%= link_to "Manager: YSoSerious", edit_account_registration_path, class: "nav-link text-white" %>
+					<%= link_to "#{current_account.role.name}: #{current_account.name}", edit_account_registration_path, class: "nav-link text-white" %>
 				<% else %>
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item">
