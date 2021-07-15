@@ -7,6 +7,7 @@ class DeviseCreateAccounts < ActiveRecord::Migration[6.1]
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
+      t.string :name, null: false, default: ""
       ## Reference key to Role table
       t.references :role, null: false, foreign_key: true
 
