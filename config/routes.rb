@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :accounts
   root 'inventories#index'
   resources :inventories
   get 'brand_models/index'

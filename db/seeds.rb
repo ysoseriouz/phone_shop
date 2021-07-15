@@ -53,8 +53,7 @@ end
 
 # 1 sample
 role = Role.find_or_create_by(name: "Manager")
-account = Account.find_or_create_by(username: "thanhnt", encrypted_password: "123456",
-                                    email: "thanhnt@gmail.com", role: role)
+role = Role.find_or_create_by(name: "Staff")
 
 @brand_model.keys.each do |brand|
   Brand.create(name: brand.to_s)
