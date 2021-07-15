@@ -1,22 +1,20 @@
 class BrandModelsController < ApplicationController
   def index
     @brands = Brand.all
-    @brand = Brand.new
-    @model = Model.new
   end
 
   def create_brand
-    @brand = Brand.new(brand_params)
-    @brand.save
-
-    redirect_to brand_models_index_path
+    @brand = Brand.new(name: params[:name])
+    if @brand.save
+      redirect_to brand_models_index_path
+    end
   end
 
   def create_model
-    @model = Model.new(model_params)
-    @model.save
-
-    redirect_to brand_models_index_path
+    @model = Model.new(name: params[:name], brand_id: params[:brand_id])
+    if @model.save
+      redirect_to brand_models_index_path
+    end
   end
 
   def update_brand
@@ -43,15 +41,5 @@ class BrandModelsController < ApplicationController
     @model = Model.find(params[:id])
     @model.destroy
     redirect_to brand_models_index_path
-  end
-
-  private
-
-  def model_params
-    params.require(:model).permit(:brand_id, :name)
-  end
-
-  def brand_params
-    params.require(:brand).permit(:name)
   end
 end
