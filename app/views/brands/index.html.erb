@@ -1,20 +1,20 @@
 <div class="container">
-  <div class="row">
+  <div class="row row-cols-md-2 row-cols-1">
 
     <div id="accordion" class="col">
       <% @brands.each do |brand| %>
         <div class="card">
           <div class="card-header" id="heading<%= brand.id %>">
             <div class="d-flex justify-content-between align-items-center">
-              <button class="btn btn-link" data-toggle="collapse" data-target="#collapse<%= brand.id %>" aria-expanded="true" aria-controls="collapse<%= brand.id %>">
+              <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapse<%= brand.id %>" aria-expanded="true" aria-controls="collapse<%= brand.id %>">
                 <%= brand.name %>
               </button>
               <%= link_to "Destroy", brand, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-danger btn-sm" %>
             </div>
           </div>
-          <div id="collapse<%= brand.id %>" class="collapse show" aria-labelledby="heading<%= brand.id %>" data-parent="#accordion">
+          <div id="collapse<%= brand.id %>" class="collapse" aria-labelledby="heading<%= brand.id %>" data-parent="#accordion">
             <div class="card-body">
-              <% brand.models.each do |model| %>
+              <% brand.models.order(:name).each do |model| %>
                 <div class="d-flex justify-content-between align-items-center">
                   <p><%= model.name %></p>
                   <%= link_to "Destroy", model, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger btn-sm" %>
@@ -27,43 +27,77 @@
     </div>
 
     <div class="col">
-      <div class="card">
-        <div class="card-header">
-          <h4>Create new brand</h4>
-        </div>
-        <div class="card-body">
-          <%= render "brands/create_form" %>
-        </div>
-      </div><br/><br/>
+      <div id="accordion">
+        <div class="card">
+          <div class="card-header" id="heading_1">
+            <div class="d-flex justify-content-between align-items-center">
+              <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapse_1" aria-expanded="true" aria-controls="collapse_1">
+                <h4>Create new brand</h4>
+              </button>
+            </div>
+          </div>
 
-      <div class="card">
-        <div class="card-header">
-          <h4>Create new model</h4>
+          <div id="collapse_1" class="collapse" aria-labelledby="heading_1" data-parent="#accordion">
+            <div class="card-body">
+              <%= render "brands/create_form" %>
+            </div>
+          </div>
         </div>
-        <div class="card-body">
-          <%= render "models/create_form" %>
-        </div>
-      </div><br/><br/>
+      </div>
 
-      <div class="card">
-        <div class="card-header">
-          <h4>Edit brand</h4>
-        </div>
-        <div class="card-body">
-          <%= render "brands/edit_form" %>
-        </div>
-      </div><br/><br/>
+      <div id="accordion">
+        <div class="card">
+          <div class="card-header" id="heading_2">
+            <div class="d-flex justify-content-between align-items-center">
+              <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapse_2" aria-expanded="true" aria-controls="collapse_2">
+                <h4>Create new model</h4>
+              </button>
+            </div>
+          </div>
 
-      <div class="card">
-        <div class="card-header">
-          <h4>Edit model</h4>
+          <div id="collapse_2" class="collapse" aria-labelledby="heading_2" data-parent="#accordion">
+            <div class="card-body">
+              <%= render "models/create_form" %>
+            </div>
+          </div>
         </div>
-        <div class="card-body">
-          <%= render "models/edit_form" %>
-        </div>
-      </div><br/><br/>
+      </div>
 
+      <div id="accordion">
+        <div class="card">
+          <div class="card-header" id="heading_3">
+            <div class="d-flex justify-content-between align-items-center">
+              <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapse_3" aria-expanded="true" aria-controls="collapse_3">
+                <h4>Edit brand</h4>
+              </button>
+            </div>
+          </div>
+
+          <div id="collapse_3" class="collapse" aria-labelledby="heading_3" data-parent="#accordion">
+            <div class="card-body">
+              <%= render "brands/edit_form" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="accordion">
+        <div class="card">
+          <div class="card-header" id="heading_4">
+            <div class="d-flex justify-content-between align-items-center">
+              <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapse_4" aria-expanded="true" aria-controls="collapse_4">
+                <h4>Edit model</h4>
+              </button>
+            </div>
+          </div>
+
+          <div id="collapse_4" class="collapse" aria-labelledby="heading_4" data-parent="#accordion">
+            <div class="card-body">
+              <%= render "models/edit_form" %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
   </div>
 </div>

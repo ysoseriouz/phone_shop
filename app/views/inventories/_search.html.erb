@@ -1,6 +1,6 @@
 <%= form_with url: inventories_path, method: :get do |form| %>
 
-  <div class="row row-cols-3 gy-4">
+  <div class="row row-cols-md-3 row-cols-1 gy-4">
     <div class="field form-group col">
       <%= form.label :id, "ID", class: "form-label" %>
       <%= form.text_field :id, value: params[:id], autocomplete: "on", placeholder: "1", class: "form-control" %>
