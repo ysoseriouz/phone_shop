@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'faker', '~> 2.18'
 gem 'kaminari', '~> 1.2', '>= 1.2.1'
+gem 'devise', '~> 4.8'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
