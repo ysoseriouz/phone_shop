@@ -9,7 +9,7 @@
               <button class="btn btn-link" data-toggle="collapse" data-target="#collapse<%= brand.id %>" aria-expanded="true" aria-controls="collapse<%= brand.id %>">
                 <%= brand.name %>
               </button>
-              <%= link_to "Destroy", "destroy_brand/#{brand.id}", method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-danger btn-sm" %>
+              <%= link_to "Destroy", brand, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-danger btn-sm" %>
             </div>
           </div>
           <div id="collapse<%= brand.id %>" class="collapse show" aria-labelledby="heading<%= brand.id %>" data-parent="#accordion">
@@ -17,7 +17,7 @@
               <% brand.models.each do |model| %>
                 <div class="d-flex justify-content-between align-items-center">
                   <p><%= model.name %></p>
-                  <%= link_to "Destroy", "destroy_model/#{model.id}", method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger btn-sm" %>
+                  <%= link_to "Destroy", model, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger btn-sm" %>
                 </div>
               <% end %>
             </div>
@@ -32,7 +32,7 @@
           <h4>Create new brand</h4>
         </div>
         <div class="card-body">
-          <%= render "brand_form" %>
+          <%= render "brands/create_form" %>
         </div>
       </div><br/><br/>
 
@@ -41,7 +41,7 @@
           <h4>Create new model</h4>
         </div>
         <div class="card-body">
-          <%= render "model_form" %>
+          <%= render "models/create_form" %>
         </div>
       </div><br/><br/>
 
@@ -50,7 +50,7 @@
           <h4>Edit brand</h4>
         </div>
         <div class="card-body">
-          <%= render "brand_edit_form" %>
+          <%= render "brands/edit_form" %>
         </div>
       </div><br/><br/>
 
@@ -59,7 +59,7 @@
           <h4>Edit model</h4>
         </div>
         <div class="card-body">
-          <%= render "model_edit_form" %>
+          <%= render "models/edit_form" %>
         </div>
       </div><br/><br/>
 
