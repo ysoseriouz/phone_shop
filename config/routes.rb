@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
   root 'inventories#index'
   resources :inventories
-  get 'brand_models/index'
-  post 'brand_models/create_model'
-  post 'brand_models/create_brand'
-  post 'brand_models/update_model'
-  post 'brand_models/update_brand'
-  delete 'brand_models/destroy_brand/:id', to: 'brand_models#destroy_brand'
-  delete 'brand_models/destroy_model/:id', to: 'brand_models#destroy_model'
+  resources :brands, only: [:index, :destroy]
+  resources :models, only: [:destroy]
+  post 'brands/create'
+  post 'brands/update'
+  post 'models/create'
+  post 'models/update'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
