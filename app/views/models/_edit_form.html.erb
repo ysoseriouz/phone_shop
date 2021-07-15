@@ -3,7 +3,7 @@
   <div class="row mb-4">
     <div class="field form-group col">
       <%= form.label :id, "Old Model Name", class: "form-label" %>
-      <%= form.grouped_collection_select :id, Brand.order(:name), :models, :name, :id, :name, {}, {class: "form-control"} %>
+      <%= form.grouped_collection_select :id, Brand.order(:name), :models, :name, :id, :name, {}, {class: "form-control brand_model_groups_selection"} %>
     </div>
 
     <div class="field form-group col">
