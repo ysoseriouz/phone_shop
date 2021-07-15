@@ -2,7 +2,7 @@ class InventoriesController < ApplicationController
   before_action :set_inventory, only: [:edit, :update, :destroy]
 
   def index
-    @inventories = Inventory.all
+    @inventories = Inventory.includes(:model).search(search_params).order(:id).page(params[:page])
   end
 
   def new
@@ -47,6 +47,14 @@ class InventoriesController < ApplicationController
       :model_id, :memory_size, :manufactoring_year,
       :os_version, :color, :price, :original_price,
       :source, :status, :description, images: []
+    )
+  end
+
+  def search_params
+    params.permit(
+      :id, :model_id, :memory_size,
+      :manufactoring_year_lb, :manufactoring_year_ub,
+      :price, :os_version, :color, :status
     )
   end
 end
