@@ -27,7 +27,6 @@ class Inventory < ApplicationRecord
   scope :by_color, -> (color) { where "color LIKE ?", "%" + color.downcase + "%" }
 
   def self.search(query_params)
-    # return find(query_params[:id]) unless query_params[:id].blank?
     query_params = query_params.delete_if { |k, v| v.blank? }
 
     inventories = self.where(nil)
