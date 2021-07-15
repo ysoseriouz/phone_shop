@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :accounts
   root 'inventories#index'
+  devise_for :accounts
   resources :inventories
   get 'brand_models/index'
   post 'brand_models/create_model'

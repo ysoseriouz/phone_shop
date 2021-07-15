@@ -5,27 +5,34 @@
 		<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="nav-item">
-					<%= link_to "New Inventory", new_inventory_path, class:"nav-link" %>
-				</li>
-				<li class="nav-item">
-					<%= link_to "Brand/Model", brand_models_index_path, class:"nav-link" %>
-				</li>
-			</ul>
-			<div class="d-flex">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item">
-						<%= link_to "Sign Up", root_path, class: "nav-link" %>
-					</li>
-					<li class="nav-item">
-						<%= link_to "Log Out", root_path, class: "nav-link" %>
-					</li>
-					<li class="nav-item">
-						<%= link_to "Log In", root_path, class: "nav-link" %>
-					</li>
+					<% if account_signed_in? %>
+						<li class="nav-item">
+							<%= link_to "New Inventory", new_inventory_path, class:"nav-link" %>
+						</li>
+						<li class="nav-item">
+							<%= link_to "Brand/Model", brand_models_index_path, class:"nav-link" %>
+						</li>
+					<% end %>
 				</ul>
-				<%= link_to "Manager: YSoSerious", root_path, class: "nav-link text-white" %>
+			<div class="d-flex">
+				<% if account_signed_in? %>
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<%= link_to "Log Out", destroy_account_session_path, class: "nav-link" %>
+						</li>
+					</ul>
+					<%= link_to "Manager: YSoSerious", edit_account_registration_path, class: "nav-link text-white" %>
+				<% else %>
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<%= link_to "Sign Up", new_account_registration_path, class: "nav-link" %>
+						</li>
+						<li class="nav-item">
+							<%= link_to "Log In", new_account_session_path, class: "nav-link" %>
+						</li>
+					</ul>
+				<% end %>
 			</div>
 		</div>
 	</div>
