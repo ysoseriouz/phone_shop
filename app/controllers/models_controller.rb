@@ -1,4 +1,6 @@
 class ModelsController < ApplicationController
+  before_action :set_model, except: :create
+
   def create
     @model = Model.new(name: params[:name], brand_id: params[:brand_id])
     if @model.save
@@ -9,7 +11,6 @@ class ModelsController < ApplicationController
   end
 
   def update
-    @model = Model.find(params[:id])
     if @model.update(name: params[:new_name])
       redirect_to brands_path, notice: "Model name updated successfully"
     else
@@ -18,11 +19,16 @@ class ModelsController < ApplicationController
   end
 
   def destroy
-    @model = Model.find(params[:id])
     if @model.destroy
       redirect_to brands_path, notice: "Model deleted successfully"
     else
       redirect_to brands_path, alert: @model.errors.full_messages
     end
+  end
+
+  private
+  
+  def set_model
+    @model = Model.find(params[:id])
   end
 end
