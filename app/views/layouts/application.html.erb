@@ -16,6 +16,8 @@
     <%= render "layouts/header" %>
     
     <% if notice %>
+      <%= render "layouts/notice" %>
+    <% elsif alert %>
       <%= render "layouts/alert" %>
     <% end %>
 
