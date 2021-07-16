@@ -1,6 +1,7 @@
 class ModelsController < ApplicationController
   before_action :authenticate_account!
   before_action :authorize_account?
+  before_action :set_model, except: :create
 
   def create
     @model = Model.new(name: params[:name], brand_id: params[:brand_id])
@@ -12,7 +13,6 @@ class ModelsController < ApplicationController
   end
 
   def update
-    @model = Model.find(params[:id])
     if @model.update(name: params[:new_name])
       redirect_to brands_path, notice: "Model name updated successfully."
     else
@@ -21,7 +21,6 @@ class ModelsController < ApplicationController
   end
 
   def destroy
-    @model = Model.find(params[:id])
     if @model.destroy
       redirect_to brands_path, notice: "Model deleted successfully."
     else
@@ -35,5 +34,8 @@ class ModelsController < ApplicationController
     unless current_account.manager?
       redirect_to brands_path, alert: "You are not authorized."
     end
+  
+  def set_model
+    @model = Model.find(params[:id])
   end
 end

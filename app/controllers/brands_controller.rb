@@ -1,6 +1,7 @@
 class BrandsController < ApplicationController
   before_action :authenticate_account!
   before_action :authorize_account?, except: [:index]
+  before_action :set_brand, only: [:update, :destroy]
 
   def index
     @brands = Brand.order(:name)
@@ -16,7 +17,6 @@ class BrandsController < ApplicationController
   end
 
   def update
-    @brand = Brand.find(params[:id])
     if @brand.update(name: params[:new_name])
       redirect_to brands_path, notice: "Brand name updated successfully."
     else
@@ -25,7 +25,6 @@ class BrandsController < ApplicationController
   end
 
   def destroy
-    @brand = Brand.find(params[:id])
     if @brand.destroy
       redirect_to brands_path, notice: "Brand deleted successfully."
     else
@@ -39,5 +38,9 @@ class BrandsController < ApplicationController
     unless current_account.manager?
       redirect_to brands_path, alert: "You are not authorized."
     end
+  end
+  
+  def set_brand
+    @brand = Brand.find(params[:id])
   end
 end

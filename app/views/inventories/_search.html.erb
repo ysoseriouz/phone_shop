@@ -1,6 +1,6 @@
 <%= form_with url: inventories_path, method: :get do |form| %>
 
-  <div class="row row-cols-3 gy-4">
+  <div class="row row-cols-md-3 row-cols-1 gy-4">
     <div class="field form-group col">
       <%= form.label :id, "ID", class: "form-label" %>
       <%= form.text_field :id, value: params[:id], autocomplete: "on", placeholder: "1", class: "form-control" %>
@@ -8,7 +8,7 @@
 
     <div class="field form-group col">
       <%= form.label :model_id, class: "form-label" %>
-      <%= form.select :model_id, model_groups_options(params[:model_id]), { prompt: "-- Select model --" }, { class: "form-control" } %>
+      <%= form.select :model_id, model_groups_options(params[:model_id]), { prompt: "-- Select model --" }, { class: "form-control brand_model_groups_selection" } %>
     </div>
 
     <div class="field form-group col">
