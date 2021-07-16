@@ -6,7 +6,7 @@
 
     <div class="card-body">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="field form-group mt-4 mb-4">
+        <div class="field form-group mb-4">
           <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "form-control" %>
         </div>
 

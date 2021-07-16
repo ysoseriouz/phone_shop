@@ -1,4 +1,4 @@
-<%= form_with url: brand_models_create_model_path, method: :post do |form| %>
+<%= form_with url: models_create_path, method: :post do |form| %>
 
   <div class="row mb-4">
     <div class="field form-group col">
@@ -8,7 +8,7 @@
 
     <div class="field form-group col">
       <%= form.label :name, "Model Name", class: "form-label" %>
-      <%= form.text_field :name, placeholder: "iPhone X", class: "form-control" %>
+      <%= form.text_field :name, placeholder: "iPhone X", required: true, class: "form-control" %>
     </div>
   </div>
 

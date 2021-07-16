@@ -7,4 +7,8 @@ class Account < ApplicationRecord
   belongs_to :role
 
   validates_associated :role
+
+  def manager?
+    self.role.name == "Manager"
+  end
 end
