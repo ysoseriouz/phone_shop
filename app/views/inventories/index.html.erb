@@ -28,7 +28,7 @@
         <tr class="align-middle">
           <td class="text-center"><%= inventory.id %></td>
           <td>
-            <%= image_tag inventory.images.attached? ? create_thumbnail(inventory) : "default_thumbnail.jpeg", class: "img-thumbnail" %>
+            <%= image_tag inventory.images.attached? ? create_thumbnail(inventory) : "default_thumbnail.jpg", class: "img-thumbnail" %>
           </td>
           <td><%= inventory.model.brand.name %></td>
           <td><%= inventory.model.name %></td>
