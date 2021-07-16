@@ -21,12 +21,18 @@ module InventoriesHelper
     )
   end
 
-  def memory_size_options
-    ["Under 16GB", "From 16GB to 64GB", "From 64GB to 256GB", "Over 256GB"]
+  def memory_size_options(selected=nil)
+    options_for_select(
+      ["Under 16GB", "From 16GB to 64GB", "From 64GB to 256GB", "Over 256GB"],
+      selected=selected
+    )
   end
 
-  def price_options
-    ["Under 10 million VND", "From 10 to 15 million VND", "From 15 to 20 million VND",
-      "From 20 to 30 million VND", "Over 30 million VND"]
+  def price_options(selected=nil)
+    options_for_select(
+      ["Under 10 million VND", "From 10 to 15 million VND", "From 15 to 20 million VND",
+        "From 20 to 30 million VND", "Over 30 million VND"],
+        selected=selected
+    )
   end
 end
