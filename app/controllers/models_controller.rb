@@ -1,5 +1,5 @@
 class ModelsController < ApplicationController
-  before_action :set_model, except: :create
+  before_action :set_model, only: [:update, :destroy]
 
   def create
     @model = Model.new(name: params[:name], brand_id: params[:brand_id])
