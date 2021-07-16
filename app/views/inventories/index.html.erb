@@ -25,7 +25,7 @@
 
     <tbody>
       <% @inventories.each do |inventory| %>
-        <tr>
+        <tr class="align-middle">
           <td class="text-center"><%= inventory.id %></td>
           <td>
             <%= image_tag inventory.images.attached? ? create_thumbnail(inventory) : "default_thumbnail.jpeg", class: "img-thumbnail" %>
