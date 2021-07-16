@@ -1,5 +1,6 @@
 class InventoriesController < ApplicationController
   before_action :set_inventory, only: [:edit, :update, :destroy]
+  before_action :authenticate_account!, except: [:index]
 
   def index
     @inventories = Inventory.includes(:model).search(search_params).order(:id).page(params[:page])
@@ -7,7 +8,6 @@ class InventoriesController < ApplicationController
 
   def new
     @inventory = Inventory.new
-    @brands = Brand.all
   end
 
   def create
