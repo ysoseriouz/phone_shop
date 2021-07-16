@@ -28,11 +28,7 @@
         <tr>
           <td class="text-center"><%= inventory.id %></td>
           <td>
-            <% if inventory.images.attached? %>
-              <%= image_tag create_thumbnail(inventory), class: "img-thumbnail" %>
-            <% else %>
-              Thumbnail here
-            <% end %>
+            <%= image_tag inventory.images.attached? ? create_thumbnail(inventory) : "default_thumbnail.jpeg", class: "img-thumbnail" %>
           </td>
           <td><%= inventory.model.brand.name %></td>
           <td><%= inventory.model.name %></td>
