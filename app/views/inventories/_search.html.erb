@@ -1,6 +1,6 @@
 <%= form_with url: inventories_path, method: :get do |form| %>
 
-  <div class="row row-cols-3 gy-4">
+  <div class="row row-cols-md-3 row-cols-1 gy-4">
     <div class="field form-group col">
       <%= form.label :id, "ID", class: "form-label" %>
       <%= form.text_field :id, value: params[:id], autocomplete: "on", placeholder: "1", class: "form-control" %>
@@ -8,19 +8,19 @@
 
     <div class="field form-group col">
       <%= form.label :model_id, class: "form-label" %>
-      <%= form.select :model_id, model_groups_options(params[:model_id]), { prompt: "-- Select model --" }, { class: "form-control" } %>
+      <%= form.select :model_id, model_groups_options(params[:model_id]), { prompt: "-- Select model --" }, { class: "form-control brand_model_groups_selection" } %>
     </div>
 
     <div class="field form-group col">
       <%= form.label :memory_size, "Memory Size", class: "form-label" %>
-      <%= form.select :memory_size, memory_size_options, { selected: params[:memory_size], prompt: "-- Select range --" }, { class: "form-control" } %>
+      <%= form.select :memory_size, memory_size_options(params[:memory_size]), { prompt: "-- Select range --" }, { class: "form-control" } %>
     </div>
 
     <div class="field form-group col">
       <%= form.label :manufactoring_year_lb, "Manufactoring Year", class: "form-label" %>
       <div class="row">
         <div class="col">
-          <%= form.select :manufactoring_year_lb, manufactoring_year_range, { selected: params[:manufactoring_year_lb], prompt: "-- From --"}, { class: "form-control" } %>
+          <%= form.select :manufactoring_year_lb, manufactoring_year_range(params[:manufactoring_year_lb]), { prompt: "-- From --" }, { class: "form-control" } %>
         </div>
         <div class="col">
           <%= form.select :manufactoring_year_ub, manufactoring_year_range(params[:manufactoring_year_ub].nil? ? Time.zone.now.year : params[:manufactoring_year_ub]),
@@ -31,12 +31,12 @@
 
     <div class="field form-group col">
       <%= form.label :price, "Price", class: "form-label" %>
-      <%= form.select :price, price_options, { selected: params[:price], prompt: "-- Select range --" }, { class: "form-control" } %>
+      <%= form.select :price, price_options(params[:price]), { prompt: "-- Select range --" }, { class: "form-control" } %>
     </div>
 
     <div class="field form-group col">
       <%= form.label :status, class: "form-label" %>
-      <%= form.select :status, inventory_status_options, { selected: params[:status], prompt: "-- Select status --" }, { class: "form-control" } %>
+      <%= form.select :status, inventory_status_options(params[:status]), { prompt: "-- Select status --" }, { class: "form-control" } %>
     </div>
     
     <div class="field form-group col">

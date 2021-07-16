@@ -1,0 +1,19 @@
+<%= form_with url: models_create_path, method: :post do |form| %>
+
+  <div class="row mb-4">
+    <div class="field form-group col">
+      <%= form.label :brand_id, class: "form-label" %>
+      <%= form.collection_select :brand_id, Brand.order(:name), :id, :name, {}, {class: "form-control"} %>
+    </div>
+
+    <div class="field form-group col">
+      <%= form.label :name, "Model Name", class: "form-label" %>
+      <%= form.text_field :name, placeholder: "iPhone X", required: true, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="action">
+    <%= form.submit class: "btn btn-primary", value: "Create" %>
+  </div>
+
+<% end %>
