@@ -27,7 +27,7 @@
           <td class="text-center"><%= inventory.id %></td>
           <td>
             <% if inventory.images.attached? %>
-              <%= image_tag create_thumbnail(inventory) %>
+              <%= image_tag create_thumbnail(inventory), class: "img-thumbnail" %>
             <% else %>
               Thumbnail here
             <% end %>
