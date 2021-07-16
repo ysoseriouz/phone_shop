@@ -27,7 +27,9 @@
       <% @inventories.each do |inventory| %>
         <tr>
           <td class="text-center"><%= inventory.id %></td>
-          <td>Thumnail here</td>
+          <td>
+            <%= image_tag inventory.images.attached? ? create_thumbnail(inventory) : "default_thumbnail.jpeg", class: "img-thumbnail" %>
+          </td>
           <td><%= inventory.model.brand.name %></td>
           <td><%= inventory.model.name %></td>
           <td class="text-end"><%= inventory.memory_size %></td>
