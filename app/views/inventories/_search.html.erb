@@ -13,14 +13,14 @@
 
     <div class="field form-group col">
       <%= form.label :memory_size, "Memory Size", class: "form-label" %>
-      <%= form.select :memory_size, memory_size_options, { selected: params[:memory_size], prompt: "-- Select range --" }, { class: "form-control" } %>
+      <%= form.select :memory_size, memory_size_options(params[:memory_size]), { prompt: "-- Select range --" }, { class: "form-control" } %>
     </div>
 
     <div class="field form-group col">
       <%= form.label :manufactoring_year_lb, "Manufactoring Year", class: "form-label" %>
       <div class="row">
         <div class="col">
-          <%= form.select :manufactoring_year_lb, manufactoring_year_range, { selected: params[:manufactoring_year_lb], prompt: "-- From --"}, { class: "form-control" } %>
+          <%= form.select :manufactoring_year_lb, manufactoring_year_range(params[:manufactoring_year_lb]), { prompt: "-- From --" }, { class: "form-control" } %>
         </div>
         <div class="col">
           <%= form.select :manufactoring_year_ub, manufactoring_year_range(params[:manufactoring_year_ub].nil? ? Time.zone.now.year : params[:manufactoring_year_ub]),
@@ -31,12 +31,12 @@
 
     <div class="field form-group col">
       <%= form.label :price, "Price", class: "form-label" %>
-      <%= form.select :price, price_options, { selected: params[:price], prompt: "-- Select range --" }, { class: "form-control" } %>
+      <%= form.select :price, price_options(params[:price]), { prompt: "-- Select range --" }, { class: "form-control" } %>
     </div>
 
     <div class="field form-group col">
       <%= form.label :status, class: "form-label" %>
-      <%= form.select :status, inventory_status_options, { selected: params[:status], prompt: "-- Select status --" }, { class: "form-control" } %>
+      <%= form.select :status, inventory_status_options(params[:status]), { prompt: "-- Select status --" }, { class: "form-control" } %>
     </div>
     
     <div class="field form-group col">
