@@ -34,6 +34,7 @@ class ModelsController < ApplicationController
     unless current_account.manager?
       redirect_to brands_path, alert: "You are not authorized."
     end
+  end
   
   def set_model
     @model = Model.find(params[:id])

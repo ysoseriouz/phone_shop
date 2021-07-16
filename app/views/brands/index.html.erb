@@ -12,7 +12,7 @@
               <%= link_to "Destroy", brand, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-danger btn-sm" %>
             </div>
           </div>
-          <div id="collapse<%= brand.id %>" class="collapse" aria-labelledby="heading<%= brand.id %>" data-parent="#accordion">
+          <div id="collapse<%= brand.id %>" class="collapse <%= 'show' if brand == @brands.first %>" aria-labelledby="heading<%= brand.id %>" data-parent="#accordion">
             <div class="card-body">
               <% brand.models.order(:name).each do |model| %>
                 <div class="d-flex justify-content-between align-items-center">
