@@ -20,8 +20,8 @@ class Inventory < ApplicationRecord
   # Search / Filter functions
   scope :by_id, -> (id) { where id: id }
   scope :by_model_id, -> (model_id) { where model_id: model_id }
-  scope :by_manufactoring_year_lb, -> (year) { where "manufactoring_year >= ?", year }
-  scope :by_manufactoring_year_ub, -> (year) { where "manufactoring_year <= ?", year }
+  scope :by_manufactoring_year_lower, -> (year) { where "manufactoring_year >= ?", year }
+  scope :by_manufactoring_year_upper, -> (year) { where "manufactoring_year <= ?", year }
   scope :by_status, -> (status) { where status: status }
   scope :by_os_version, -> (os) { where "os_version LIKE ?", "%" + os + "%" }
   scope :by_color, -> (color) { where "color LIKE ?", "%" + color.downcase + "%" }
@@ -69,8 +69,8 @@ class Inventory < ApplicationRecord
 
   private
 
-  def self.range_query(attribute, lb, ub=nil)
-    return ub.nil? ? where("#{attribute} >= ?", lb) : where("#{attribute} >= ? and #{attribute} <= ?", lb, ub)
+  def self.range_query(attribute, lower_bound, upper_bound=nil)
+    return upper_bound.nil? ? where("#{attribute} >= ?", lower_bound) : where("#{attribute} >= ? and #{attribute} <= ?", lower_bound, upper_bound)
   end
 
   def downcase_color

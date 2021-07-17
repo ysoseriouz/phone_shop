@@ -17,13 +17,13 @@
     </div>
 
     <div class="field form-group col">
-      <%= form.label :manufactoring_year_lb, "Manufactoring Year", class: "form-label" %>
+      <%= form.label :manufactoring_year_lower, "Manufactoring Year", class: "form-label" %>
       <div class="row">
         <div class="col">
-          <%= form.select :manufactoring_year_lb, manufactoring_year_range(params[:manufactoring_year_lb]), { prompt: "-- From --" }, { class: "form-control" } %>
+          <%= form.select :manufactoring_year_lower, manufactoring_year_range(params[:manufactoring_year_lower]), { prompt: "-- From --" }, { class: "form-control" } %>
         </div>
         <div class="col">
-          <%= form.select :manufactoring_year_ub, manufactoring_year_range(params[:manufactoring_year_ub].nil? ? Time.zone.now.year : params[:manufactoring_year_ub]),
+          <%= form.select :manufactoring_year_upper, manufactoring_year_range(params[:manufactoring_year_upper].nil? ? Time.zone.now.year : params[:manufactoring_year_upper]),
               { prompt: "-- To --" }, { class: "form-control" } %>
         </div>
       </div>
