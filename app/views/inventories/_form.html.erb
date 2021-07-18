@@ -1,0 +1,77 @@
+<%= form_with model: inventory do |form| %>
+  <% if inventory.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(inventory.errors.count, "error") %> prohibited this friend from being saved:</h2>
+
+      <ul>
+        <% inventory.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row row-cols-md-3 row-cols-2 gy-4 mb-4">
+    <div class="field form-group col">
+      <%= form.label :model_id, class: "form-label" %>
+      <div class="form-control">
+        <%= form.select :model_id, model_groups_options(inventory.model_id), {}, { autofocus: true, class: "autocomplete" } %>
+      </div>
+    </div>
+
+    <div class="field form-group col">
+      <%= form.label :memory_size, "Memory Size", class: "form-label" %>
+      <%= form.number_field :memory_size, min: 0, placeholder: "GB", class: "form-control" %>
+    </div>
+
+    <div class="field form-group col">
+      <%= form.label :memory_size, "Manufactoring Year", class: "form-label" %>
+      <%= form.select :manufactoring_year, manufactoring_year_range(inventory.manufactoring_year), {}, { class: "form-control" } %>
+    </div>
+    
+    <div class="field form-group col">
+      <%= form.label :os_version, "OS Version", class: "form-label" %>
+      <%= form.text_field :os_version, autocomplete: "on", class: "form-control" %>
+    </div>
+
+    <div class="field form-group col">
+      <%= form.label :color, "Color", class: "form-label" %>
+      <%= form.text_field :color, autocomplete: "on", class: "form-control" %>
+    </div>
+
+    <div class="field form-group col">
+      <%= form.label :price, "Price", class: "form-label" %>
+      <%= form.number_field :price, min: 0, class: "form-control", placeholder: "VND" %>
+    </div>
+
+    <div class="field form-group col">
+      <%= form.label :price, "Original Price", class: "form-label" %>
+      <%= form.number_field :original_price, min: 0, class: "form-control", placeholder: "VND" %>
+    </div>
+
+    <div class="field form-group col">
+      <%= form.label :source, class: "form-label" %>
+      <%= form.text_field :source, autocomplete: "on", class: "form-control" %>
+    </div>
+
+    <div class="field form-group col">
+      <%= form.label :status, class: "form-label" %>
+      <%= form.select :status, inventory_status_options(inventory.status), {}, { class: "form-control" } %>
+    </div>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_area :description, class: "form-control", placeholder: "-- Some notes --" %>
+  </div><br/>
+
+  <div class="field form-group">
+    <%= form.label :images, "Upload Images", class: "form-label" %>
+    <%= form.file_field :images, multiple: true, class: "form-control" %>
+  </div><br/><br/>
+
+  <div class="action">
+    <%= link_to "Cancel", inventories_path, class: "btn btn-outline-secondary" %>
+    <%= form.submit class: "btn btn-primary", value: "Save" %>
+  </div>
+<% end %>

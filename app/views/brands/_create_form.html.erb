@@ -1,0 +1,11 @@
+<%= form_with url: brands_create_path, method: :post do |form| %>
+
+  <div class="field form-group col mb-4">
+    <%= form.label :name, "Brand Name", class: "form-label" %>
+    <%= form.text_field :name, placeholder: "Apple", required: true, class: "form-control" %>
+  </div>
+  <div class="action">
+    <%= form.submit class: "btn btn-primary", value: "Create" %>
+  </div>
+  
+<% end %>

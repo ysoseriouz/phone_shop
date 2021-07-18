@@ -1,0 +1,19 @@
+<%= form_with url: brands_update_path, method: :patch do |form| %>
+
+  <div class="row mb-4">
+    <div class="field form-group col">
+      <%= form.label :id, "Old Brand Name", class: "form-label" %>
+      <%= form.collection_select :id, Brand.order(:name), :id, :name, {}, {class: "form-control"} %>
+    </div>
+
+    <div class="field form-group col">
+      <%= form.label :new_name, "New Brand Name", class: "form-label" %>
+      <%= form.text_field :new_name, required: true, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="action">
+    <%= form.submit class: "btn btn-primary", value: "Save" %>
+  </div>
+
+<% end %>
