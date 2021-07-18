@@ -8,7 +8,9 @@
 
     <div class="field form-group col">
       <%= form.label :model_id, class: "form-label" %>
-      <%= form.select :model_id, model_groups_options(params[:model_id]), { prompt: "-- Select model --" }, { class: "form-control brand_model_groups_selection" } %>
+      <div class="form-control" id="select2-parent">
+        <%= form.select :model_id, model_groups_options(params[:model_id]), { prompt: "-- Select model --" }, { class: "autocomplete" } %>
+      </div>
     </div>
 
     <div class="field form-group col">

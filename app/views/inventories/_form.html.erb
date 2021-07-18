@@ -14,7 +14,9 @@
   <div class="row row-cols-md-3 row-cols-2 gy-4 mb-4">
     <div class="field form-group col">
       <%= form.label :model_id, class: "form-label" %>
-      <%= form.select :model_id, model_groups_options(inventory.model_id), {}, { autofocus: true, class: "form-control brand_model_groups_selection" } %>
+      <div class="form-control">
+        <%= form.select :model_id, model_groups_options(inventory.model_id), {}, { autofocus: true, class: "autocomplete" } %>
+      </div>
     </div>
 
     <div class="field form-group col">
