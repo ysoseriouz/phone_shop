@@ -7,6 +7,11 @@
     </div>
 
     <div class="field form-group col">
+      <%= form.label :brand_id, class: "form-label" %>
+      <%= form.collection_select :brand_id, Brand.order(:name), :id, :name, { selected: params[:brand_id], prompt: "-- Select brand --" }, { class: "form-control" } %>
+    </div>
+
+    <div class="field form-group col">
       <%= form.label :model_id, class: "form-label" %>
       <div class="form-control" id="select2-parent">
         <%= form.select :model_id, model_groups_options(params[:model_id]), { prompt: "-- Select model --" }, { class: "autocomplete" } %>

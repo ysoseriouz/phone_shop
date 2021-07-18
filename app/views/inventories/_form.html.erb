@@ -72,9 +72,6 @@
 
   <div class="action">
     <%= link_to "Cancel", inventories_path, class: "btn btn-outline-secondary" %>
-    <% unless inventory.id.nil? %>
-      <%= link_to "Destroy", inventory, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-    <% end %>
     <%= form.submit class: "btn btn-primary", value: "Save" %>
   </div>
 <% end %>

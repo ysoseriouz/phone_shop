@@ -52,7 +52,7 @@ class InventoriesController < ApplicationController
 
   def search_params
     params.permit(
-      :id, :model_id, :memory_size, :manufactoring_year_lower,
+      :id, :brand_id, :model_id, :memory_size, :manufactoring_year_lower,
       :manufactoring_year_upper, :price, :os_version, :color, :status
     )
   end
