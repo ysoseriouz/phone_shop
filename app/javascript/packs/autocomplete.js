@@ -22,7 +22,7 @@ $(function() {
       // Check each child of the option
       for (var c = data.children.length - 1; c >= 0; c--) {
         var child = data.children[c];
-        child.parentText += data.parentText + " " + data.text;
+        child.parentText = data.parentText + " " + data.text;
 
         var matches = customMatcher(params, child);
 
