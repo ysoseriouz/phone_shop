@@ -16,3 +16,8 @@
 body {
   padding-top: 80px;
 }
+#images-view img {
+  width: auto;
+  height: 400px;
+  max-height: 400px;
+}
