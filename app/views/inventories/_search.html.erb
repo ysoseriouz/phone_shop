@@ -55,10 +55,12 @@
       <%= form.label :color, "Color", class: "form-label" %>
       <%= form.text_field :color, value: params[:color], autocomplete: "on", placeholder: "Black", class: "form-control" %>
     </div>
+  </div>
 
-    <div class="action col d-flex justify-content-evenly align-items-end">
-      <%= link_to "Clear", inventories_path, class: "btn btn-outline-secondary btn-lg" %>
-      <%= form.submit class: "btn btn-primary btn-lg", value: "Search" %>
+  <div class="row">
+    <div class="action d-flex justify-content-end align-items-end">
+      <%= link_to "Clear", inventories_path, class: "btn btn-outline-secondary btn-lg m-4 mb-0" %>
+      <%= form.submit class: "btn btn-primary btn-lg m-4 mb-0", value: "Search" %>
     </div>
   </div>
 

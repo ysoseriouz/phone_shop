@@ -1,9 +1,10 @@
 <div class="container mb-4">
   <%= render "search" %>
-</div><br/>
+</div>
 
 <%= paginate @inventories, window: 2, outer_window: 2 %>
 <div class="container-fluid table-responsive">
+  <h5>Total records: <%= @num_records %></h5>
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr class="table-dark text-center">

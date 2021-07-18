@@ -3,7 +3,9 @@ class InventoriesController < ApplicationController
   before_action :authenticate_account!, except: [:index]
 
   def index
-    @inventories = Inventory.includes(:model).search(search_params).order(:id).page(params[:page])
+    inventories = Inventory.includes(:model).search(search_params).order(:id)
+    @num_records = inventories.count
+    @inventories = inventories.page(params[:page])
   end
 
   def new
