@@ -30,8 +30,8 @@
           <td class="text-center">
             <%= image_tag inventory.images.attached? ? create_thumbnail(inventory) : "default_thumbnail.jpg", class: "img-thumbnail" %>
           </td>
-          <td><%= inventory.model.brand.name %></td>
-          <td><%= inventory.model.name %></td>
+          <td><%= link_to inventory.model.brand.name, inventories_path({ brand_id: inventory.model.brand_id }) %></td>
+          <td><%= link_to inventory.model.name, inventories_path({ model_id: inventory.model.id }) %></td>
           <td class="text-end"><%= inventory.memory_size %></td>
           <td class="text-end"><%= inventory.manufactoring_year %></td>
           <td><%= inventory.os_version %></td>
