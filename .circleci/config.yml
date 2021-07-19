@@ -9,11 +9,7 @@ jobs:
     executor: ruby/default
     steps:
       - checkout
+      - ruby/install-deps
       - run:
-          name: Install dependencies and check version
-          command: ruby/install-deps
-          command: ruby -v
+          name: Which rails?
           command: rails -v
-      - run:
-          name: Which bundler?
-          command: bundle -v
