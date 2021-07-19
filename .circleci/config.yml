@@ -14,5 +14,5 @@ jobs:
           format: progress
           label: Inspecting with Rubocop
       - run:
-          name: Which rails?
-          command: rails -v
+          name: Which bundle?
+          command: bundle -v
