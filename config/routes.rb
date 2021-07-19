@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   root 'inventories#index'
   devise_for :accounts
   resources :inventories
-  resources :brands, only: [:index, :destroy]
+  resources :brands, only: %i[index destroy]
   resources :models, only: [:destroy]
   post 'brands/create'
   patch 'brands/update'
