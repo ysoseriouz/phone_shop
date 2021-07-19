@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h2>Change your password</h2>
+    </div>
+
+    <div class="card-body">
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="field form-group mb-4">
+          <%= f.password_field :password, autofocus: true, autocomplete: "new-password", placeholder: "New password", class: "form-control" %>
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+          <% end %>
+        </div>
+
+        <div class="field form-group mb-4">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm new password", class: "form-control" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Change my password", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

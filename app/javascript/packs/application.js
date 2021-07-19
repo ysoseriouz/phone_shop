@@ -11,3 +11,12 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+// Added
+import "select2"
+import "select2/dist/css/select2"
+
+var jQuery = require("jquery")
+
+global.$ = global.jQuery = jQuery;
+window.$ = window.jQuery = jQuery;
