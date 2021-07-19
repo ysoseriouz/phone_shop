@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,92 +12,93 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_15_054115) do
-
-  create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "name", default: "", null: false
-    t.bigint "role_id", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_accounts_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
-    t.index ["role_id"], name: "index_accounts_on_role_id"
+ActiveRecord::Schema.define(version: 20_210_715_054_115) do
+  create_table 'accounts', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
+    t.string 'email', default: '', null: false
+    t.string 'encrypted_password', default: '', null: false
+    t.string 'name', default: '', null: false
+    t.bigint 'role_id', null: false
+    t.string 'reset_password_token'
+    t.datetime 'reset_password_sent_at'
+    t.datetime 'remember_created_at'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['email'], name: 'index_accounts_on_email', unique: true
+    t.index ['reset_password_token'], name: 'index_accounts_on_reset_password_token', unique: true
+    t.index ['role_id'], name: 'index_accounts_on_role_id'
   end
 
-  create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
-    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
-    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  create_table 'active_storage_attachments', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
+    t.string 'name', null: false
+    t.string 'record_type', null: false
+    t.bigint 'record_id', null: false
+    t.bigint 'blob_id', null: false
+    t.datetime 'created_at', null: false
+    t.index ['blob_id'], name: 'index_active_storage_attachments_on_blob_id'
+    t.index %w[record_type record_id name blob_id], name: 'index_active_storage_attachments_uniqueness',
+                                                    unique: true
   end
 
-  create_table "active_storage_blobs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "key", null: false
-    t.string "filename", null: false
-    t.string "content_type"
-    t.text "metadata"
-    t.string "service_name", null: false
-    t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
-    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  create_table 'active_storage_blobs', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
+    t.string 'key', null: false
+    t.string 'filename', null: false
+    t.string 'content_type'
+    t.text 'metadata'
+    t.string 'service_name', null: false
+    t.bigint 'byte_size', null: false
+    t.string 'checksum', null: false
+    t.datetime 'created_at', null: false
+    t.index ['key'], name: 'index_active_storage_blobs_on_key', unique: true
   end
 
-  create_table "active_storage_variant_records", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "blob_id", null: false
-    t.string "variation_digest", null: false
-    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  create_table 'active_storage_variant_records', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci',
+                                                 force: :cascade do |t|
+    t.bigint 'blob_id', null: false
+    t.string 'variation_digest', null: false
+    t.index %w[blob_id variation_digest], name: 'index_active_storage_variant_records_uniqueness', unique: true
   end
 
-  create_table "brands", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_brands_on_name", unique: true
+  create_table 'brands', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
+    t.string 'name', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['name'], name: 'index_brands_on_name', unique: true
   end
 
-  create_table "inventories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "memory_size", null: false, unsigned: true
-    t.integer "manufactoring_year", null: false, unsigned: true
-    t.string "os_version", null: false
-    t.string "color", null: false
-    t.decimal "price", precision: 10, scale: 2, null: false, unsigned: true
-    t.decimal "original_price", precision: 10, scale: 2, unsigned: true
-    t.integer "status", default: 0, null: false
-    t.string "source"
-    t.text "description"
-    t.bigint "model_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["model_id"], name: "index_inventories_on_model_id"
+  create_table 'inventories', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
+    t.integer 'memory_size', null: false, unsigned: true
+    t.integer 'manufactoring_year', null: false, unsigned: true
+    t.string 'os_version', null: false
+    t.string 'color', null: false
+    t.decimal 'price', precision: 10, scale: 2, null: false, unsigned: true
+    t.decimal 'original_price', precision: 10, scale: 2, unsigned: true
+    t.integer 'status', default: 0, null: false
+    t.string 'source'
+    t.text 'description'
+    t.bigint 'model_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['model_id'], name: 'index_inventories_on_model_id'
   end
 
-  create_table "models", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name", null: false
-    t.bigint "brand_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["brand_id"], name: "index_models_on_brand_id"
+  create_table 'models', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
+    t.string 'name', null: false
+    t.bigint 'brand_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['brand_id'], name: 'index_models_on_brand_id'
   end
 
-  create_table "roles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_roles_on_name", unique: true
+  create_table 'roles', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
+    t.string 'name', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['name'], name: 'index_roles_on_name', unique: true
   end
 
-  add_foreign_key "accounts", "roles"
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "inventories", "models"
-  add_foreign_key "models", "brands"
+  add_foreign_key 'accounts', 'roles'
+  add_foreign_key 'active_storage_attachments', 'active_storage_blobs', column: 'blob_id'
+  add_foreign_key 'active_storage_variant_records', 'active_storage_blobs', column: 'blob_id'
+  add_foreign_key 'inventories', 'models'
+  add_foreign_key 'models', 'brands'
 end
