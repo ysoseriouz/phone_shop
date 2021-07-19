@@ -6,6 +6,7 @@ jobs:
   build:
     docker:
       - image: cimg/ruby:3.0.1-node
+      - image: circleci/mysql:8.0.25
     executor: ruby/default
     steps:
       - checkout
