@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
+# Controller for Inventories views
 class InventoriesController < ApplicationController
-  before_action :set_inventory, only: [:edit, :update, :destroy]
+  before_action :set_inventory, only: %i[edit update destroy]
   before_action :authenticate_account!, except: [:index]
 
   def index
@@ -14,7 +17,7 @@ class InventoriesController < ApplicationController
 
   def create
     @inventory = Inventory.new(inventory_params)
-    
+
     if @inventory.save
       redirect_to edit_inventory_path(@inventory)
     else
@@ -22,8 +25,7 @@ class InventoriesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @inventory.update(inventory_params)
@@ -39,7 +41,7 @@ class InventoriesController < ApplicationController
   end
 
   private
-  
+
   def set_inventory
     @inventory = Inventory.find(params[:id])
   end

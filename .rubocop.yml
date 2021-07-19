@@ -1,0 +1,17 @@
+AllCops:
+  TargetRubyVersion: 3.0.1 # change version
+  Exclude:
+    - "vendor/bundle/**/*"
+    - "node_modules/**/*"
+    - ",/**/*"
+    - ".git/**/*"
+    - "bin/*"
+    - "db/**/*"
+    - "log/**/*"
+    - "public/**/*"
+    - "tmp/**/*"
+    - "config/initializers/*"
+    - "config/environments/*"
+    - "config/application.rb"
+Metrics/MethodLength:
+  Max: 15

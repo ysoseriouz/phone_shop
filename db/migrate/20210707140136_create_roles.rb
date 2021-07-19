@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Create Roles table in connected database
 class CreateRoles < ActiveRecord::Migration[6.1]
   def change
     create_table :roles do |t|

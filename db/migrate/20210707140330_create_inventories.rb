@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Create Inventories table in connected database
 class CreateInventories < ActiveRecord::Migration[6.1]
   def change
     create_table :inventories do |t|
