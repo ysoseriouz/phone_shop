@@ -10,5 +10,10 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install dependencies and check version
+          command: ruby/install-deps
+          command: ruby -v
+          command: rails -v
+      - run:
           name: Which bundler?
           command: bundle -v
