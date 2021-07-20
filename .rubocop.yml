@@ -13,5 +13,6 @@ AllCops:
     - "config/initializers/*"
     - "config/environments/*"
     - "config/application.rb"
+    - "spec/**/*"
 Metrics/MethodLength:
   Max: 15

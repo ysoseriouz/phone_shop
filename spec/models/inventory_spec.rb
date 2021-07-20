@@ -2,16 +2,16 @@ require 'rails_helper'
 
 RSpec.describe Inventory, type: :model do
   describe '.new' do
-    let(:brand) { Brand.create(name: "Apple") }
-    let(:model) { Model.create(name: "iPhone X", brand: brand) }
-    let(:inventory) {
+    let(:brand) { Brand.create(name: 'Apple') }
+    let(:model) { Model.create(name: 'iPhone X', brand: brand) }
+    let(:inventory) do
       Inventory.new(
         model: model, memory_size: 256, manufactoring_year: 2020,
-        os_version: "iOS 14", color: "black", price: 10000.50,
-        original_price: 9000.50, status: :active, source: "retailer",
-        description: "Test creating new inventory"
+        os_version: 'iOS 14', color: 'black', price: 10_000.50,
+        original_price: 9000.50, status: :active, source: 'retailer',
+        description: 'Test creating new inventory'
       )
-    }
+    end
 
     it 'is valid with valid attributes' do
       expect(inventory).to be_valid
