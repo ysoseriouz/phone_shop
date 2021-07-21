@@ -3,45 +3,31 @@
 require 'rails_helper'
 
 RSpec.describe Inventory, type: :model do
-  def seed_data       # rubocop:disable Metrics/MethodLength
-    brand1 = Brand.create(name: 'Apple')
-    brand2 = Brand.create(name: 'Samsung')
-    model1 = Model.create(name: 'iPhone X', brand: brand1)
-    model2 = Model.create(name: 'iPhone 7', brand: brand1)
-    model3 = Model.create(name: 'Galaxy Note 10', brand: brand2)
+  def seed_data
+    brand1 = create(:brand)
+    brand2 = create(:brand, name: 'Samsung')
+    model1 = create(:model, brand: brand1)
+    model2 = create(:model, name: 'iPhone 7', brand: brand1)
+    model3 = create(:model, name: 'Galaxy Note 10', brand: brand2)
 
-    Inventory.create(
-      model: model1, memory_size: 10, manufactoring_year: 2020,
-      os_version: 'iOS 14', color: 'black', price: 9_000_000, status: :active
-    )
-    Inventory.create(
-      model: model1, memory_size: 32, manufactoring_year: 2020,
-      os_version: 'iOS 14', color: 'green', price: 10_000_000, status: :active
-    )
-    Inventory.create(
-      model: model2, memory_size: 200, manufactoring_year: 2014,
-      os_version: 'Android 5', color: 'black', price: 15_000_000, status: :inactive
-    )
-    Inventory.create(
-      model: model3, memory_size: 300, manufactoring_year: 2021,
-      os_version: 'Android 5', color: 'Green', price: 20_000_000, status: :inactive
-    )
-    Inventory.create(
-      model: model3, memory_size: 256, manufactoring_year: 2019,
-      os_version: 'Android 11', color: 'BLACK', price: 30_000_000, status: :sold
-    )
+    create(:inventory, model: model1, memory_size: 10, manufactoring_year: 2020, price: 9_000_000)
+    create(:inventory, model: model1, memory_size: 32, manufactoring_year: 2020,
+                       price: 10_000_000, os_version: 'iOS 14', color: 'green')
+    create(:inventory, model: model2, memory_size: 200, manufactoring_year: 2014,
+                       price: 15_000_000, os_version: 'Android 5', color: 'black', status: :inactive)
+    create(:inventory, model: model3, memory_size: 300, manufactoring_year: 2021,
+                       price: 20_000_000, os_version: 'Android 5', color: 'Green', status: :inactive)
+    create(:inventory, model: model3, memory_size: 256, manufactoring_year: 2019,
+                       price: 30_000_000, os_version: 'Android 11', color: 'BLACK', status: :sold)
   end
 
   describe '.new' do
-    let(:brand) { Brand.create(name: 'Apple 2') }
-    let(:model) { Model.create(name: 'iPhone 100', brand: brand) }
+    let(:brand) { create(:brand) }
+    let(:model) { create(:model, brand: brand) }
     let(:inventory) do
-      Inventory.new(
-        model: model, memory_size: 256, manufactoring_year: 2020,
-        os_version: 'iOS 14', color: 'black', price: 10_000.50,
-        original_price: 9000.50, status: :active, source: 'retailer',
-        description: 'Test creating new inventory'
-      )
+      build(:inventory, model: model, memory_size: 256, manufactoring_year: 2020,
+                        os_version: 'iOS 14', color: 'black', price: 10_000.50,
+                        original_price: 9000.50, status: :active)
     end
 
     it 'is valid with valid attributes' do
