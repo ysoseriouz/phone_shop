@@ -38,11 +38,7 @@ RSpec.describe Brand, type: :model do
   describe '.destroy' do
     before(:all) do
       @brand = create(:brand)
-      @model = create(:model, brand: @brand)
-    end
-
-    after(:all) do
-      Brand.destroy_all
+      create(:model, brand: @brand)
     end
 
     context 'when referenced by a model' do

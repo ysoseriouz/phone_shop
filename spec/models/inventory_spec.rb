@@ -86,11 +86,6 @@ RSpec.describe Inventory, type: :model do
       seed_data
     end
 
-    after(:all) do
-      Brand.destroy_all
-      Model.destroy_all
-    end
-
     context 'records found' do
       it 'by brand' do
         brand = Brand.find_by(name: 'Apple')
