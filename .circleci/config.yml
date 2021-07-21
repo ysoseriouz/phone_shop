@@ -9,11 +9,12 @@ jobs:
         environment:
           TZ: Asia/Tokyo
           RAILS_ENV: test
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
           DB_HOST: 127.0.0.1
-      - image: circleci/mysql:8.0.25
-        command: [--default-authentication-plugin=mysql_native_password]
+      - image: circleci/mysql:5.7-ram
         environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          TZ: Asia/Tokyo
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
           MYSQL_ROOT_HOST: '%'
     executor: ruby/default
     steps:
