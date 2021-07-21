@@ -7,11 +7,12 @@ jobs:
     docker:
       - image: cimg/ruby:3.0.1-node
         environment:
+          TZ: Asia/Tokyo
           RAILS_ENV: test
-          MYSQL_ALLOW_EMPTY_PASSWORD: true
           DB_HOST: 127.0.0.1
       - image: circleci/mysql:5.7.32
         environment:
+          TZ: Asia/Tokyo
           MYSQL_ALLOW_EMPTY_PASSWORD: true
           MYSQL_ROOT_HOST: '%'
     executor: ruby/default
