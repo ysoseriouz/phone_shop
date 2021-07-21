@@ -1,24 +1,30 @@
 version: 2.1
 orbs:
-  browser-tools: circleci/browser-tools@1.1.3
-  node: circleci/node@4.5.1
+  ruby: circleci/ruby@1.1.4
+
 jobs:
   build:
     docker:
-      - image: cimg/ruby:3.0.1-browsers
+      - image: cimg/ruby:3.0.1-node
         environment:
-            TZ: Asia/Tokyo
-            RAILS_ENV: test
-            MYSQL_ALLOW_EMPTY_PASSWORD: true
-            DB_HOST: 127.0.0.1
+          RAILS_ENV: test
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
+          DB_HOST: 127.0.0.1
       - image: circleci/mysql:5.7.32
         environment:
           TZ: Asia/Tokyo
           MYSQL_ALLOW_EMPTY_PASSWORD: true
           MYSQL_ROOT_HOST: '%'
+    executor: ruby/default
     steps:
       - checkout
       - ruby/install-deps
+      - run:
+          name: Which bundle?
+          command: bundle -v
+      - ruby/rubocop-check:
+          format: progress
+          label: Rubocop inspecting
 
       # Setup DB
       - run:
