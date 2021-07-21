@@ -19,3 +19,10 @@ Metrics/MethodLength:
 
 Metrics/BlockLength:
   Enabled: false
+
+Style/MixinGrouping:
+  Enabled: true
+  Exclude:
+    - 'rails_helper.rb'
+    - 'spec/spec_helper.rb'
+    - 'spec/**/*_spec.rb'
