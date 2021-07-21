@@ -10,7 +10,7 @@ jobs:
           RAILS_ENV: test
           MYSQL_ALLOW_EMPTY_PASSWORD: true
           DB_HOST: 127.0.0.1
-      - image: circleci/mysql:8.0.25
+      - image: circleci/mysql:5.7.32
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: true
           MYSQL_ROOT_HOST: '%'
@@ -28,10 +28,10 @@ jobs:
       # Setup DB
       - run:
           name: Wait for DB
-          command: dockerize -wait tcp://localhost:3306 -timeout 1m
-      - run:
-          name: Database setup
-          command: bundle exec rails db:schema:load --trace
-      
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
+
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
+
       # Test
       - ruby/rspec-test
