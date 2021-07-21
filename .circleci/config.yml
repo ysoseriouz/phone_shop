@@ -15,6 +15,7 @@ jobs:
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: true
           MYSQL_ROOT_HOST: '%'
+          MYSQL_ROOT_PASSWORD: ''
     executor: ruby/default
     steps:
       - checkout
