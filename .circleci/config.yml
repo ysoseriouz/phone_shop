@@ -7,13 +7,12 @@ jobs:
     docker:
       - image: cimg/ruby:3.0.1-node
         environment:
-          TZ: Asia/Tokyo
           RAILS_ENV: test
           MYSQL_ALLOW_EMPTY_PASSWORD: true
           DB_HOST: 127.0.0.1
-      - image: circleci/mysql:5.7-ram
+      - image: circleci/mysql:8.0.25
+        command: [--default-authentication-plugin=mysql_native_password]
         environment:
-          TZ: Asia/Tokyo
           MYSQL_ALLOW_EMPTY_PASSWORD: true
           MYSQL_ROOT_HOST: '%'
     executor: ruby/default
@@ -30,10 +29,10 @@ jobs:
       # Setup DB
       - run:
           name: Wait for DB
-          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
-
-      - run: RAILS_ENV=test bundle exec rails db:create
-      - run: RAILS_ENV=test bundle exec rails db:schema:load
-
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
+      - run:
+          name: Database setup
+          command: bundle exec rails db:schema:load --trace
+      
       # Test
       - ruby/rspec-test
