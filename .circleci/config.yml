@@ -37,7 +37,7 @@ jobs:
 
       # Test
       - run:
-        name: rspec
-        command: |
-          bundle exec rspec --profile 10 --format progress \
-                                          --format RspecJunitFormatter \
+          name: rspec
+          command: |
+            bundle exec rspec --profile 10 --format progress \
+                                           --format RspecJunitFormatter \
