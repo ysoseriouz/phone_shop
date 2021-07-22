@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe InventoriesController, type: :request do
@@ -72,7 +74,7 @@ RSpec.describe InventoriesController, type: :request do
 
       it 'response successfully' do
         get new_inventory_path
-        
+
         expect(response).to render_template(:new)
         expect(assigns(:inventory)).to be_a_new(Inventory)
       end
@@ -125,7 +127,7 @@ RSpec.describe InventoriesController, type: :request do
 
   # inventories#edit
   describe 'GET /inventories/:id/edit' do
-    let(:inventory) {Inventory.take}
+    let(:inventory) { Inventory.take }
 
     context 'when user signed in' do
       before(:each) do
@@ -161,7 +163,7 @@ RSpec.describe InventoriesController, type: :request do
         it 'updated successfully' do
           put inventory_path(inventory.id), params: { inventory: { memory_size: 1000 } }
           inventory.reload
-  
+
           expect(inventory.memory_size).to eq(1000)
           expect(response).to redirect_to(edit_inventory_path(assigns(:inventory)))
         end
@@ -171,7 +173,7 @@ RSpec.describe InventoriesController, type: :request do
         it 'updated failed' do
           put inventory_path(inventory.id), params: { inventory: { memory_size: nil, color: 'not a color' } }
           inventory.reload
-  
+
           expect(inventory.color).to_not eq('not a color')
           expect(response).to have_http_status(422)
           expect(response).to render_template(:edit)
@@ -200,7 +202,7 @@ RSpec.describe InventoriesController, type: :request do
       context 'valid existing inventory' do
         it 'deleted successfully' do
           delete inventory_path(inventory.id)
-  
+
           expect(response).to redirect_to(inventories_path)
           follow_redirect!
           expect(response).to render_template(:index)
@@ -217,5 +219,4 @@ RSpec.describe InventoriesController, type: :request do
       end
     end
   end
-
 end
