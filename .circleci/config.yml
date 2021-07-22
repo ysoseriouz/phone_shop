@@ -21,7 +21,7 @@ jobs:
       - ruby/install-deps
       - run:
           name: Which bundle?
-          command: bundle -v
+          command: bundle -vrs
       - ruby/rubocop-check:
           format: progress
           label: Rubocop inspecting
@@ -34,6 +34,6 @@ jobs:
       - run:
           name: Database setup
           command: bundle exec rails db:schema:load --trace
-      
+      - run: bundle exec rake assets:precompile
       # Test
       - ruby/rspec-test
