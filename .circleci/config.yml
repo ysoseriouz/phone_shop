@@ -34,10 +34,6 @@ jobs:
       - run:
           name: Database setup
           command: bundle exec rails db:schema:load --trace
-
+      
       # Test
-      - run:
-          name: rspec
-          command: |
-            bundle exec rspec --profile 10 --format progress \
-                                           --format RspecJunitFormatter \
+      - ruby/rspec-test
