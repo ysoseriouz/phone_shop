@@ -35,6 +35,6 @@ jobs:
           name: Database setup
           command: bundle exec rails db:schema:load --trace
       
+      - run: bundle exec rake assets:precompile
       # Test
-      - run: bundle exec rake assets:precompile RAILS_ENV=test
       - ruby/rspec-test
