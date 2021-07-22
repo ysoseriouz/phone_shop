@@ -60,13 +60,15 @@ RSpec.describe BrandsController, type: :request do
       end
 
       context 'with valid attributes' do
-        it 'created successfully' do
+        before(:each) do
           post brands_create_path, params: { name: 'A new brand' }
+        end
+
+        it 'created successfully' do
           expect(Brand.count).to eq(3)
         end
 
         it 'routed and rendered notice message successfully' do
-          post brands_create_path, params: { name: 'A new brand' }
           expect(response).to redirect_to(brands_path)
           follow_redirect!
           expect(response.body).to include('New brand created successfully.')
@@ -74,25 +76,29 @@ RSpec.describe BrandsController, type: :request do
       end
 
       context 'with invalid attributes' do
-        it 'created failed' do
+        before(:each) do
           post brands_create_path, params: { name: nil }
+        end
+
+        it 'created failed' do
           expect(Brand.count).to eq(2)
         end
 
         it 'routed successfully' do
-          post brands_create_path, params: { name: nil }
           expect(response).to redirect_to(brands_path)
         end
       end
 
       context 'with existed brand attributes' do
-        it 'created failed' do
+        before(:each) do
           post brands_create_path, params: attributes_for(:brand)
+        end
+
+        it 'created failed' do
           expect(Brand.count).to eq(2)
         end
 
         it 'routed successfully' do
-          post brands_create_path, params: attributes_for(:brand)
           expect(response).to redirect_to(brands_path)
         end
       end
@@ -101,15 +107,14 @@ RSpec.describe BrandsController, type: :request do
     context 'when user logged in as staff' do
       before(:each) do
         sign_in staff
+        post brands_create_path, params: { name: 'A new brand' }
       end
 
       it 'created failed' do
-        post brands_create_path, params: { name: 'A new brand' }
         expect(Brand.count).to eq(2)
       end
 
       it 'render unauthorized alert message' do
-        post brands_create_path, params: { name: 'A new brand' }
         expect(response).to redirect_to(brands_path)
         follow_redirect!
         expect(response.body).to include('You are not authorized.')
@@ -132,14 +137,16 @@ RSpec.describe BrandsController, type: :request do
       end
 
       context 'with valid attributes' do
-        it 'updated successfully' do
+        before(:each) do
           patch brands_update_path, params: { id: @brand2.id, new_name: 'A new brand name' }
+        end
+
+        it 'updated successfully' do
           @brand2.reload
           expect(@brand2.name).to eq('A new brand name')
         end
 
         it 'routed and rendered notice message successfully' do
-          patch brands_update_path, params: { id: @brand2.id, new_name: 'A new brand name' }
           expect(response).to redirect_to(brands_path)
           follow_redirect!
           expect(response.body).to include('Brand name updated successfully.')
@@ -147,27 +154,31 @@ RSpec.describe BrandsController, type: :request do
       end
 
       context 'with invalid attributes' do
-        it 'updated failed' do
+        before(:each) do
           patch brands_update_path, params: { id: @brand2.id, new_name: nil }
+        end
+
+        it 'updated failed' do
           @brand2.reload
           expect(@brand2.name).to eq('Samsung')
         end
 
         it 'routed successfully' do
-          patch brands_update_path, params: { id: @brand2.id, new_name: nil }
           expect(response).to redirect_to(brands_path)
         end
       end
 
       context 'with existed brand attributes' do
-        it 'updated failed' do
+        before(:each) do
           patch brands_update_path, params: { id: @brand2.id, new_name: @brand1.name }
+        end
+
+        it 'updated failed' do
           @brand2.reload
           expect(@brand2.name).to eq('Samsung')
         end
 
         it 'routed successfully' do
-          patch brands_update_path, params: { id: @brand2.id, new_name: @brand1.name }
           expect(response).to redirect_to(brands_path)
         end
       end
@@ -176,16 +187,15 @@ RSpec.describe BrandsController, type: :request do
     context 'when user logged in as staff' do
       before(:each) do
         sign_in staff
+        patch brands_update_path, params: { id: @brand2.id, new_name: 'A new brand name' }
       end
 
       it 'updated failed' do
-        patch brands_update_path, params: { id: @brand2.id, new_name: 'A new brand name' }
         @brand2.reload
         expect(@brand2.name).to eq('Samsung')
       end
 
       it 'render unauthorized alert message' do
-        patch brands_update_path, params: { id: @brand2.id, new_name: 'A new brand name' }
         expect(response).to redirect_to(brands_path)
         follow_redirect!
         expect(response.body).to include('You are not authorized.')
@@ -205,16 +215,15 @@ RSpec.describe BrandsController, type: :request do
     context 'when user logged in as manager' do
       before(:each) do
         sign_in manager
+        delete brand_path(@brand1.id)
       end
 
       it 'deleted successfully' do
-        delete brand_path(@brand1.id)
         expect(Brand.count).to eq(1)
         expect(Model.count).to eq(1)
       end
 
       it 'routed and rendered notice message successfully' do
-        delete brand_path(@brand1.id)
         expect(response).to redirect_to(brands_path)
         follow_redirect!
         expect(response.body).to include('Brand deleted successfully.')
@@ -224,16 +233,15 @@ RSpec.describe BrandsController, type: :request do
     context 'when user logged in as staff' do
       before(:each) do
         sign_in staff
+        delete brand_path(@brand1.id)
       end
 
       it 'deleted failed' do
-        delete brand_path(@brand1.id)
         expect(Brand.count).to eq(2)
         expect(Model.count).to eq(3)
       end
 
       it 'render unauthorized alert message' do
-        delete brand_path(@brand1.id)
         expect(response).to redirect_to(brands_path)
         follow_redirect!
         expect(response.body).to include('You are not authorized.')

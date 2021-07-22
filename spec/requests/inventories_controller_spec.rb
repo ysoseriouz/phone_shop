@@ -108,14 +108,15 @@ RSpec.describe InventoriesController, type: :request do
       end
 
       context 'valid attributes' do
-        it 'created successfully' do
+        before(:each) do
           post inventories_path, params: { inventory: build(:inventory).attributes }
+        end
+
+        it 'created successfully' do
           expect(Inventory.count).to eq(6)
         end
 
         it 'routed successfully' do
-          post inventories_path, params: { inventory: build(:inventory).attributes }
-
           expect(response).to redirect_to(edit_inventory_path(assigns(:inventory)))
           follow_redirect!
           expect(response).to render_template(:edit)
@@ -123,13 +124,15 @@ RSpec.describe InventoriesController, type: :request do
       end
 
       context 'invalid attributes' do
-        it 'response status unprocessable_entity (422)' do
+        before(:each) do
           post inventories_path, params: { inventory: build(:inventory, model_id: nil).attributes }
+        end
+
+        it 'response status unprocessable_entity (422)' do
           expect(response).to have_http_status(422)
         end
 
         it 're-render new inventory page' do
-          post inventories_path, params: { inventory: build(:inventory, model_id: nil).attributes }
           expect(response).to render_template(:new)
         end
       end
@@ -176,33 +179,36 @@ RSpec.describe InventoriesController, type: :request do
       end
 
       context 'valid attributes' do
-        it 'updated successfully' do
+        before(:each) do
           put inventory_path(inventory.id), params: { inventory: { memory_size: 1000 } }
+        end
+
+        it 'updated successfully' do
           inventory.reload
           expect(inventory.memory_size).to eq(1000)
         end
 
         it 'redirect to edit page with updated information' do
-          put inventory_path(inventory.id), params: { inventory: { memory_size: 1000 } }
           expect(response).to redirect_to(edit_inventory_path(assigns(:inventory)))
         end
       end
 
       context 'invalid attributes' do
-        it 'updated failed and re-render' do
+        before(:each) do
           put inventory_path(inventory.id), params: { inventory: { memory_size: nil, color: 'not a color' } }
+        end
+
+        it 'updated failed and re-render' do
           inventory.reload
           expect(inventory.color).to_not eq('not a color')
         end
 
         it 'response status unprocessable_entity (422)' do
-          put inventory_path(inventory.id), params: { inventory: { memory_size: nil, color: 'not a color' } }
           inventory.reload
           expect(response).to have_http_status(422)
         end
 
         it 're-render edit inventory page' do
-          put inventory_path(inventory.id), params: { inventory: { memory_size: nil, color: 'not a color' } }
           inventory.reload
           expect(response).to render_template(:edit)
         end
