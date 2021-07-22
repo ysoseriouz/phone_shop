@@ -8,7 +8,6 @@ jobs:
       - image: cimg/ruby:3.0.1-node
         environment:
           RAILS_ENV: test
-          MYSQL_ALLOW_EMPTY_PASSWORD: true
           DB_HOST: 127.0.0.1
       - image: circleci/mysql:8.0.25
         command: [--default-authentication-plugin=mysql_native_password]
@@ -19,9 +18,6 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps
-      - run:
-          name: Which bundle?
-          command: bundle -v
       - ruby/rubocop-check:
           format: progress
           label: Rubocop inspecting
