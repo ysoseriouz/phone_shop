@@ -21,7 +21,7 @@ jobs:
       - ruby/install-deps
       - run:
           name: Which bundle?
-          command: bundle -vrs
+          command: bundle -v
       - ruby/rubocop-check:
           format: progress
           label: Rubocop inspecting
