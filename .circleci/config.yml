@@ -19,9 +19,6 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps
-      - run:
-          name: Which bundle?
-          command: bundle -v
       - ruby/rubocop-check:
           format: progress
           label: Rubocop inspecting
