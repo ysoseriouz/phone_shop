@@ -27,6 +27,6 @@ FactoryBot.define do
     color { 'black' }
     price { 10_000_000 }
     status { :active }
-    model
+    model { Model.first || association(:model) }
   end
 end

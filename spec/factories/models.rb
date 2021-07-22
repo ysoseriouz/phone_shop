@@ -14,6 +14,6 @@
 FactoryBot.define do
   factory :model do
     name { 'iPhone X' }
-    brand
+    brand { Brand.first || association(:brand) }
   end
 end

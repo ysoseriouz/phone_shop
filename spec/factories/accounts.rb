@@ -22,6 +22,6 @@ FactoryBot.define do
     password { 'password' }
     password_confirmation { 'password' }
     name { 'Test User' }
-    role
+    role { Role.first || association(:role) }
   end
 end
