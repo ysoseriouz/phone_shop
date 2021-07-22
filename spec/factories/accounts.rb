@@ -18,9 +18,10 @@
 
 FactoryBot.define do
   factory :account do
-    email { 'ntt@gmail.com' }
-    encrypted_password { '123123' }
-    name { 'YSoSerious' }
+    email { 'user@example.com' }
+    password { 'password' }
+    password_confirmation { 'password' }
+    name { 'Test User' }
     role
   end
 end
