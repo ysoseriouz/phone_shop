@@ -3,28 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe Inventory, type: :model do
-  def seed_data
-    brand1 = create(:brand)
-    brand2 = create(:brand, name: 'Samsung')
-    model1 = create(:model, brand: brand1)
-    model2 = create(:model, name: 'iPhone 7', brand: brand1)
-    model3 = create(:model, name: 'Galaxy Note 10', brand: brand2)
-
-    create(:inventory, model: model1, memory_size: 10, manufactoring_year: 2020, price: 9_000_000)
-    create(:inventory, model: model1, memory_size: 32, manufactoring_year: 2020,
-                       price: 10_000_000, os_version: 'iOS 14', color: 'green')
-    create(:inventory, model: model2, memory_size: 200, manufactoring_year: 2014,
-                       price: 15_000_000, os_version: 'Android 5', color: 'black', status: :inactive)
-    create(:inventory, model: model3, memory_size: 300, manufactoring_year: 2021,
-                       price: 20_000_000, os_version: 'Android 5', color: 'Green', status: :inactive)
-    create(:inventory, model: model3, memory_size: 256, manufactoring_year: 2019,
-                       price: 30_000_000, os_version: 'Android 11', color: 'BLACK', status: :sold)
-  end
-
   describe '.new' do
-    let(:brand) { create(:brand) }
-    let(:model) { create(:model, brand: brand) }
     let(:inventory) do
+      model = create(:model, brand: create(:brand))
       build(:inventory, model: model, memory_size: 256, manufactoring_year: 2020,
                         os_version: 'iOS 14', color: 'black', price: 10_000.50,
                         original_price: 9000.50, status: :active)
@@ -69,7 +50,7 @@ RSpec.describe Inventory, type: :model do
       expect(inventory).to_not be_valid
     end
 
-    context 'memory_size' do
+    context 'with memory_size' do
       it 'invalid if negative' do
         inventory.memory_size = -45
         expect(inventory).to_not be_valid
@@ -81,7 +62,7 @@ RSpec.describe Inventory, type: :model do
       end
     end
 
-    context 'manufactoring_year' do
+    context 'with manufactoring_year' do
       it 'invalid if negative' do
         inventory.manufactoring_year = -45
         expect(inventory).to_not be_valid
@@ -106,10 +87,24 @@ RSpec.describe Inventory, type: :model do
 
   describe '.scope' do
     before(:all) do
-      seed_data
+      brand1 = create(:brand)
+      brand2 = create(:brand, name: 'Samsung')
+      model1 = create(:model, brand: brand1)
+      model2 = create(:model, name: 'iPhone 7', brand: brand1)
+      model3 = create(:model, name: 'Galaxy Note 10', brand: brand2)
+
+      create(:inventory, model: model1, memory_size: 10, manufactoring_year: 2020, price: 9_000_000)
+      create(:inventory, model: model1, memory_size: 32, manufactoring_year: 2020,
+                         price: 10_000_000, os_version: 'iOS 14', color: 'green')
+      create(:inventory, model: model2, memory_size: 200, manufactoring_year: 2014,
+                         price: 15_000_000, os_version: 'Android 5', color: 'black', status: :inactive)
+      create(:inventory, model: model3, memory_size: 300, manufactoring_year: 2021,
+                         price: 20_000_000, os_version: 'Android 5', color: 'Green', status: :inactive)
+      create(:inventory, model: model3, memory_size: 256, manufactoring_year: 2019,
+                         price: 30_000_000, os_version: 'Android 11', color: 'BLACK', status: :sold)
     end
 
-    context 'records found' do
+    context 'when records found' do
       it 'by brand' do
         brand = Brand.find_by(name: 'Apple')
         inventories = Inventory.by_brand_id(brand.id)
@@ -132,7 +127,7 @@ RSpec.describe Inventory, type: :model do
         expect(inventories.count).to eq(2)
       end
 
-      context 'by memory_size range' do
+      context 'when memory_size range' do
         it 'Under 16GB' do
           inventories = Inventory.by_memory_size('Under 16GB')
           expect(inventories.count).to eq(1)
@@ -154,7 +149,7 @@ RSpec.describe Inventory, type: :model do
         end
       end
 
-      context 'by price range' do
+      context 'when price range' do
         it 'Under 10 million VND' do
           inventories = Inventory.by_price('Under 10 million VND')
           expect(inventories.count).to eq(2)
@@ -181,7 +176,7 @@ RSpec.describe Inventory, type: :model do
         end
       end
 
-      context 'by status' do
+      context 'when status' do
         it 'active' do
           inventories = Inventory.by_status(:active)
           expect(inventories.count).to eq(2)
@@ -209,7 +204,7 @@ RSpec.describe Inventory, type: :model do
       end
     end
 
-    context 'records not found' do
+    context 'when records not found' do
       it 'by brand' do
         inventories = Inventory.by_brand_id(5)
         expect(inventories.count).to eq(0)

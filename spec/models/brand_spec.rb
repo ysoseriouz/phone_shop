@@ -43,11 +43,11 @@ RSpec.describe Brand, type: :model do
 
     context 'when referenced by a model' do
       it 'destroy referencing model' do
-        expect(Brand.all.count).to eq(1)
-        expect(Model.all.count).to eq(1)
+        expect(Brand.count).to eq(1)
+        expect(Model.count).to eq(1)
         @brand.destroy
-        expect(Brand.all.count).to eq(0)
-        expect(Model.all.count).to eq(0)
+        expect(Brand.count).to eq(0)
+        expect(Model.count).to eq(0)
       end
     end
   end
