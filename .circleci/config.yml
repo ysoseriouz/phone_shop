@@ -6,14 +6,31 @@ jobs:
   build:
     docker:
       - image: cimg/ruby:3.0.1-node
+        environment:
+          RAILS_ENV: test
+          DB_HOST: 127.0.0.1
       - image: circleci/mysql:8.0.25
+        command: [--default-authentication-plugin=mysql_native_password]
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_ROOT_HOST: '%'
     executor: ruby/default
     steps:
       - checkout
       - ruby/install-deps
       - ruby/rubocop-check:
           format: progress
-          label: Inspecting with Rubocop
+          label: Rubocop inspecting
+
+      # Setup DB
       - run:
-          name: Which bundle?
-          command: bundle -v
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
+      - run: bundle exec rake db:create
+      - run:
+          name: Database setup
+          command: bundle exec rails db:schema:load --trace
+      
+      - run: bundle exec rake assets:precompile
+      # Test
+      - ruby/rspec-test
