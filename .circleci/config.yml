@@ -36,5 +36,4 @@ jobs:
           command: bundle exec rails db:schema:load --trace
       
       # Test
-      - run: bundle exec rake assets:precompile RAILS_ENV=test
       - ruby/rspec-test
