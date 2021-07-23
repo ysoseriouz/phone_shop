@@ -36,18 +36,18 @@ RSpec.describe Brand, type: :model do
   end
 
   describe '.destroy' do
-    before(:all) do
+    before(:each) do
       @brand = create(:brand)
       create(:model, brand: @brand)
     end
 
     context 'when referenced by a model' do
-      it 'destroy referencing model' do
-        expect(Brand.count).to eq(1)
-        expect(Model.count).to eq(1)
-        @brand.destroy
-        expect(Brand.count).to eq(0)
-        expect(Model.count).to eq(0)
+      it 'destroy successfully' do
+        expect { @brand.destroy }.to change { Brand.count }.from(1).to(0)
+      end
+
+      it 'destroy dependent models successfully' do
+        expect { @brand.destroy }.to change { Model.count }.from(1).to(0)
       end
     end
   end

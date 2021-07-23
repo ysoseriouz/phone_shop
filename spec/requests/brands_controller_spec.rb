@@ -17,13 +17,14 @@ RSpec.describe BrandsController, type: :request do
   # brands#index
   describe 'GET /brands' do
     shared_examples 'render index successfully' do
+      subject { get brands_path }
       it 'render index page' do
-        get brands_path
+        subject
         expect(response).to render_template(:index)
       end
 
       it 'render all brands' do
-        get brands_path
+        subject
         expect(assigns(:brands).count).to eq(2)
       end
     end
@@ -54,67 +55,68 @@ RSpec.describe BrandsController, type: :request do
 
   # brands#create
   describe 'POST /brands/create' do
+    subject { post brands_create_path, params: params }
+
     context 'when user logged in as manager' do
       before(:each) do
         sign_in manager
       end
 
       context 'with valid attributes' do
-        before(:each) do
-          post brands_create_path, params: { name: 'A new brand' }
-        end
-
-        it 'created successfully' do
-          expect(Brand.count).to eq(3)
-        end
+        let(:params) { { name: 'A new brand' } }
 
         it 'routed and rendered notice message successfully' do
+          subject
           expect(response).to redirect_to(brands_path)
           follow_redirect!
           expect(response.body).to include('New brand created successfully.')
         end
+
+        it 'created successfully' do
+          expect { subject }.to change(Brand, :count).by(1)
+        end
       end
 
       context 'with invalid attributes' do
-        before(:each) do
-          post brands_create_path, params: { name: nil }
-        end
+        let(:params) { { name: nil } }
 
         it 'created failed' do
-          expect(Brand.count).to eq(2)
+          expect { subject }.to_not change(Brand, :count)
         end
 
         it 'routed successfully' do
+          subject
           expect(response).to redirect_to(brands_path)
         end
       end
 
       context 'with existed brand attributes' do
-        before(:each) do
-          post brands_create_path, params: attributes_for(:brand)
-        end
+        let(:params) { attributes_for(:brand) }
 
         it 'created failed' do
-          expect(Brand.count).to eq(2)
+          expect { subject }.to_not change(Brand, :count)
         end
 
         it 'routed successfully' do
+          subject
           expect(response).to redirect_to(brands_path)
         end
       end
     end
 
     context 'when user logged in as staff' do
+      let(:params) { { name: 'A new brand' } }
+
       before(:each) do
         sign_in staff
-        post brands_create_path, params: { name: 'A new brand' }
       end
 
       it 'created failed' do
-        expect(Brand.count).to eq(2)
+        expect { subject }.to_not change(Brand, :count)
       end
 
       it 'render unauthorized alert message' do
+        subject
         expect(response).to redirect_to(brands_path)
         follow_redirect!
         expect(response.body).to include('You are not authorized.')
@@ -122,8 +124,10 @@ RSpec.describe BrandsController, type: :request do
     end
 
     context 'when user logged out' do
+      let(:params) { { name: 'A new brand' } }
+
       it 'redirect to log-in page' do
-        post brands_create_path, params: { name: 'A new brand' }
+        subject
         expect(response).to redirect_to(new_account_session_path)
       end
     end
@@ -131,22 +135,23 @@ RSpec.describe BrandsController, type: :request do
 
   # brands#update
   describe 'PATCH /brands/update' do
+    subject { patch brands_update_path, params: { id: @brand2.id, new_name: new_name } }
+    let(:new_name) { 'A new brand name' }
+
     context 'when user logged in as manager' do
       before(:each) do
         sign_in manager
       end
 
       context 'with valid attributes' do
-        before(:each) do
-          patch brands_update_path, params: { id: @brand2.id, new_name: 'A new brand name' }
-        end
-
         it 'updated successfully' do
+          subject
           @brand2.reload
           expect(@brand2.name).to eq('A new brand name')
         end
 
         it 'routed and rendered notice message successfully' do
+          subject
           expect(response).to redirect_to(brands_path)
           follow_redirect!
           expect(response.body).to include('Brand name updated successfully.')
@@ -154,31 +159,31 @@ RSpec.describe BrandsController, type: :request do
       end
 
       context 'with invalid attributes' do
-        before(:each) do
-          patch brands_update_path, params: { id: @brand2.id, new_name: nil }
-        end
+        let(:new_name) {}
 
         it 'updated failed' do
+          subject
           @brand2.reload
           expect(@brand2.name).to eq('Samsung')
         end
 
         it 'routed successfully' do
+          subject
           expect(response).to redirect_to(brands_path)
         end
       end
 
       context 'with existed brand attributes' do
-        before(:each) do
-          patch brands_update_path, params: { id: @brand2.id, new_name: @brand1.name }
-        end
+        let(:new_name) { @brand1.name }
 
         it 'updated failed' do
+          subject
           @brand2.reload
           expect(@brand2.name).to eq('Samsung')
         end
 
         it 'routed successfully' do
+          subject
           expect(response).to redirect_to(brands_path)
         end
       end
@@ -187,15 +192,16 @@ RSpec.describe BrandsController, type: :request do
     context 'when user logged in as staff' do
       before(:each) do
         sign_in staff
-        patch brands_update_path, params: { id: @brand2.id, new_name: 'A new brand name' }
       end
 
       it 'updated failed' do
+        subject
         @brand2.reload
         expect(@brand2.name).to eq('Samsung')
       end
 
       it 'render unauthorized alert message' do
+        subject
         expect(response).to redirect_to(brands_path)
         follow_redirect!
         expect(response.body).to include('You are not authorized.')
@@ -204,7 +210,7 @@ RSpec.describe BrandsController, type: :request do
 
     context 'when user logged out' do
       it 'redirect to log-in page' do
-        patch brands_update_path, params: { id: @brand2.id, new_name: 'A new brand name' }
+        subject
         expect(response).to redirect_to(new_account_session_path)
       end
     end
@@ -212,18 +218,22 @@ RSpec.describe BrandsController, type: :request do
 
   # brands#destroy
   describe 'DELETE /brands/:id' do
+    subject { delete brand_path(@brand1.id) }
     context 'when user logged in as manager' do
       before(:each) do
         sign_in manager
-        delete brand_path(@brand1.id)
       end
 
       it 'deleted successfully' do
-        expect(Brand.count).to eq(1)
-        expect(Model.count).to eq(1)
+        expect { subject }.to change(Brand, :count).by(-1)
+      end
+
+      it 'deleted dependent models successfully' do
+        expect { subject }.to change(Model, :count).from(3).to(1)
       end
 
       it 'routed and rendered notice message successfully' do
+        subject
         expect(response).to redirect_to(brands_path)
         follow_redirect!
         expect(response.body).to include('Brand deleted successfully.')
@@ -233,15 +243,18 @@ RSpec.describe BrandsController, type: :request do
     context 'when user logged in as staff' do
       before(:each) do
         sign_in staff
-        delete brand_path(@brand1.id)
       end
 
       it 'deleted failed' do
-        expect(Brand.count).to eq(2)
-        expect(Model.count).to eq(3)
+        expect { subject }.to_not change(Brand, :count)
+      end
+
+      it 'deleted dependent models failed' do
+        expect { subject }.to_not change(Model, :count)
       end
 
       it 'render unauthorized alert message' do
+        subject
         expect(response).to redirect_to(brands_path)
         follow_redirect!
         expect(response.body).to include('You are not authorized.')
@@ -250,7 +263,7 @@ RSpec.describe BrandsController, type: :request do
 
     context 'when user logged out' do
       it 'redirect to log-in page' do
-        delete brand_path(@brand1.id)
+        subject
         expect(response).to redirect_to(new_account_session_path)
       end
     end

@@ -76,25 +76,27 @@ RSpec.describe InventoriesController, type: :request do
 
   # inventories#new
   describe 'GET /inventories/new' do
+    subject { get new_inventory_path }
+
     context 'when user signed in' do
       before(:each) do
         sign_in create(:account)
       end
 
       it 'successfully render new inventory page' do
-        get new_inventory_path
+        subject
         expect(response).to render_template(:new)
       end
 
       it 'successfully initialize a new Inventory' do
-        get new_inventory_path
+        subject
         expect(assigns(:inventory)).to be_a_new(Inventory)
       end
     end
 
     context 'when user not signed in' do
       it 'redirect to log-in page' do
-        get new_inventory_path
+        subject
         expect(response).to redirect_to(new_account_session_path)
       end
     end
@@ -102,21 +104,23 @@ RSpec.describe InventoriesController, type: :request do
 
   # inventories#create
   describe 'POST /inventories' do
+    subject { post inventories_path, params: params }
+    let(:params) { { inventory: build(:inventory).attributes } }
+
     context 'when user signed in' do
       before(:each) do
         sign_in create(:account)
       end
 
       context 'valid attributes' do
-        before(:each) do
-          post inventories_path, params: { inventory: build(:inventory).attributes }
-        end
+        let(:params) { { inventory: build(:inventory).attributes } }
 
         it 'created successfully' do
-          expect(Inventory.count).to eq(6)
+          expect { subject }.to change(Inventory, :count).by(1)
         end
 
         it 'routed successfully' do
+          subject
           expect(response).to redirect_to(edit_inventory_path(assigns(:inventory)))
           follow_redirect!
           expect(response).to render_template(:edit)
@@ -124,15 +128,15 @@ RSpec.describe InventoriesController, type: :request do
       end
 
       context 'invalid attributes' do
-        before(:each) do
-          post inventories_path, params: { inventory: build(:inventory, model_id: nil).attributes }
-        end
+        let(:params) { { inventory: build(:inventory, model_id: nil).attributes } }
 
         it 'response status unprocessable_entity (422)' do
+          subject
           expect(response).to have_http_status(422)
         end
 
         it 're-render new inventory page' do
+          subject
           expect(response).to render_template(:new)
         end
       end
@@ -140,7 +144,7 @@ RSpec.describe InventoriesController, type: :request do
 
     context 'when user not signed in' do
       it 'redirect to log-in page' do
-        post inventories_path, params: { inventory: build(:inventory).attributes }
+        subject
         expect(response).to redirect_to(new_account_session_path)
       end
     end
@@ -148,7 +152,7 @@ RSpec.describe InventoriesController, type: :request do
 
   # inventories#edit
   describe 'GET /inventories/:id/edit' do
-    let(:inventory) { Inventory.take }
+    subject { get edit_inventory_path(Inventory.take.id) }
 
     context 'when user signed in' do
       before(:each) do
@@ -156,14 +160,14 @@ RSpec.describe InventoriesController, type: :request do
       end
 
       it 'successfully render edit inventory page' do
-        get edit_inventory_path(inventory.id)
+        subject
         expect(response).to render_template(:edit)
       end
     end
 
     context 'when user not signed in' do
       it 'redirect to log-in page' do
-        get edit_inventory_path(inventory.id)
+        subject
         expect(response).to redirect_to(new_account_session_path)
       end
     end
@@ -171,7 +175,9 @@ RSpec.describe InventoriesController, type: :request do
 
   # inventories#update
   describe 'PATCH/PUT /inventories/:id' do
+    subject { put inventory_path(inventory.id), params: params }
     let(:inventory) { Inventory.take }
+    let(:params) { {inventory: { memory_size: 1000 }} }
 
     context 'when user signed in' do
       before(:each) do
@@ -179,36 +185,35 @@ RSpec.describe InventoriesController, type: :request do
       end
 
       context 'valid attributes' do
-        before(:each) do
-          put inventory_path(inventory.id), params: { inventory: { memory_size: 1000 } }
-        end
-
         it 'updated successfully' do
+          subject
           inventory.reload
           expect(inventory.memory_size).to eq(1000)
         end
 
         it 'redirect to edit page with updated information' do
+          subject
           expect(response).to redirect_to(edit_inventory_path(assigns(:inventory)))
         end
       end
 
       context 'invalid attributes' do
-        before(:each) do
-          put inventory_path(inventory.id), params: { inventory: { memory_size: nil, color: 'not a color' } }
-        end
+      let(:params) { {inventory: { memory_size: nil, color: 'not a color' }} }
 
         it 'updated failed and re-render' do
+          subject
           inventory.reload
           expect(inventory.color).to_not eq('not a color')
         end
 
         it 'response status unprocessable_entity (422)' do
+          subject
           inventory.reload
           expect(response).to have_http_status(422)
         end
 
         it 're-render edit inventory page' do
+          subject
           inventory.reload
           expect(response).to render_template(:edit)
         end
@@ -217,7 +222,7 @@ RSpec.describe InventoriesController, type: :request do
 
     context 'when user not signed in' do
       it 'redirect to log-in page' do
-        put inventory_path(inventory.id), params: { inventory: { memory_size: 1000 } }
+        subject
         expect(response).to redirect_to(new_account_session_path)
       end
     end
@@ -225,7 +230,7 @@ RSpec.describe InventoriesController, type: :request do
 
   # inventories#destroy
   describe 'DELETE /inventories/:id' do
-    let(:inventory) { Inventory.take }
+    subject { delete inventory_path(Inventory.take.id) }
 
     context 'when user signed in' do
       before(:each) do
@@ -234,12 +239,11 @@ RSpec.describe InventoriesController, type: :request do
 
       context 'valid existing inventory' do
         it 'deleted successfully' do
-          delete inventory_path(inventory.id)
-          expect(Inventory.count).to eq(4)
+          expect { subject }.to change(Inventory, :count).by(-1)
         end
 
         it 'routed successfully' do
-          delete inventory_path(inventory.id)
+          subject
           expect(response).to redirect_to(inventories_path)
           follow_redirect!
           expect(response).to render_template(:index)
@@ -249,7 +253,7 @@ RSpec.describe InventoriesController, type: :request do
 
     context 'when user not signed in' do
       it 'redirect to log-in page' do
-        delete inventory_path(inventory.id)
+        subject
         expect(response).to redirect_to(new_account_session_path)
       end
     end

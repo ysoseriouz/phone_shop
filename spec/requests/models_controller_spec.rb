@@ -15,21 +15,21 @@ RSpec.describe ModelsController, type: :request do
 
   # models#create
   describe 'POST /models/create' do
+    subject { post models_create_path, params: params }
+    let(:params) { build(:model, name: 'A new model').attributes }
+
     context 'when user logged in as manager' do
       before(:each) do
         sign_in manager
       end
 
       context 'with valid attributes' do
-        before(:each) do
-          post models_create_path, params: build(:model, name: 'A new model').attributes
-        end
-
         it 'created successfully' do
-          expect(Model.count).to eq(3)
+          expect { subject }.to change(Model, :count).by(1)
         end
 
         it 'routed and rendered notice message successfully' do
+          subject
           expect(response).to redirect_to(brands_path)
           follow_redirect!
           expect(response.body).to include('New model created successfully.')
@@ -37,29 +37,27 @@ RSpec.describe ModelsController, type: :request do
       end
 
       context 'with invalid attributes' do
-        before(:each) do
-          post models_create_path, params: build(:model, name: nil).attributes
-        end
+        let(:params) { build(:model, name: nil).attributes }
 
         it 'created failed' do
-          expect(Model.count).to eq(2)
+          expect { subject }.to_not change(Model, :count)
         end
 
         it 'routed successfully' do
+          subject
           expect(response).to redirect_to(brands_path)
         end
       end
 
       context 'with existed model attributes' do
-        before(:each) do
-          post models_create_path, params: build(:model, name: @model.name).attributes
-        end
+        let(:params) { build(:model, name: @model.name).attributes }
 
         it 'created failed' do
-          expect(Model.count).to eq(2)
+          expect { subject }.to_not change(Model, :count)
         end
 
         it 'routed successfully' do
+          subject
           expect(response).to redirect_to(brands_path)
         end
       end
@@ -68,14 +66,14 @@ RSpec.describe ModelsController, type: :request do
     context 'when user logged in as staff' do
       before(:each) do
         sign_in staff
-        post models_create_path, params: build(:model, name: 'A new model').attributes
       end
 
       it 'created failed' do
-        expect(Model.count).to eq(2)
+        expect { subject }.to_not change(Model, :count)
       end
 
       it 'render unauthorized alert message' do
+        subject
         expect(response).to redirect_to(brands_path)
         follow_redirect!
         expect(response.body).to include('You are not authorized.')
@@ -84,7 +82,7 @@ RSpec.describe ModelsController, type: :request do
 
     context 'when user logged out' do
       it 'redirect to log-in page' do
-        post models_create_path, params: build(:model, name: 'A new model').attributes
+        subject
         expect(response).to redirect_to(new_account_session_path)
       end
     end
@@ -92,22 +90,23 @@ RSpec.describe ModelsController, type: :request do
 
   # models#update
   describe 'PATCH /models/update' do
+    subject { patch models_update_path, params: { id: @model.id, new_name: new_name } }
+    let(:new_name) { 'A new model name' }
+
     context 'when user logged in as manager' do
       before(:each) do
         sign_in manager
       end
 
       context 'with valid attributes' do
-        before(:each) do
-          patch models_update_path, params: { id: @model.id, new_name: 'A new model name' }
-        end
-
         it 'updated successfully' do
+          subject
           @model.reload
           expect(@model.name).to eq('A new model name')
         end
 
         it 'routed and rendered notice message successfully' do
+          subject
           expect(response).to redirect_to(brands_path)
           follow_redirect!
           expect(response.body).to include('Model name updated successfully.')
@@ -115,31 +114,31 @@ RSpec.describe ModelsController, type: :request do
       end
 
       context 'with invalid attributes' do
-        before(:each) do
-          patch models_update_path, params: { id: @model.id, new_name: nil }
-        end
+        let(:new_name) {}
 
         it 'updated failed' do
+          subject
           @model.reload
           expect(@model.name).to eq('iPhone X')
         end
 
         it 'routed successfully' do
+          subject
           expect(response).to redirect_to(brands_path)
         end
       end
 
       context 'with existed brand attributes' do
-        before(:each) do
-          patch models_update_path, params: { id: @model.id, new_name: @model2.name }
-        end
+        let(:new_name) { @model2.name }
 
         it 'updated failed' do
+          subject
           @model.reload
           expect(@model.name).to eq('iPhone X')
         end
 
         it 'routed successfully' do
+          subject
           expect(response).to redirect_to(brands_path)
         end
       end
@@ -148,15 +147,16 @@ RSpec.describe ModelsController, type: :request do
     context 'when user logged in as staff' do
       before(:each) do
         sign_in staff
-        patch models_update_path, params: { id: @model.id, new_name: 'A new model name' }
       end
 
       it 'updated failed' do
+        subject
         @model.reload
         expect(@model.name).to_not eq('A new model name')
       end
 
       it 'render unauthorized alert message' do
+        subject
         expect(response).to redirect_to(brands_path)
         follow_redirect!
         expect(response.body).to include('You are not authorized.')
@@ -165,7 +165,7 @@ RSpec.describe ModelsController, type: :request do
 
     context 'when user logged out' do
       it 'redirect to log-in page' do
-        patch models_update_path, params: { id: @model.id, new_name: 'A new model name' }
+        subject
         expect(response).to redirect_to(new_account_session_path)
       end
     end
@@ -173,18 +173,22 @@ RSpec.describe ModelsController, type: :request do
 
   # models#destroy
   describe 'DELETE /models/:id' do
+    subject { delete model_path(@model.id) }
+
     context 'when user logged in as manager' do
       before(:each) do
         sign_in manager
-        delete model_path(@model.id)
       end
 
       it 'deleted successfully' do
-        expect(Model.count).to eq(1)
-        expect(Inventory.count).to eq(0)
+        expect { subject }.to change(Model, :count).by(-1)
+      end
+      it 'deleted dependent inventories successfully' do
+        expect { subject }.to change(Inventory, :count).to(0)
       end
 
       it 'routed and rendered notice message successfully' do
+        subject
         expect(response).to redirect_to(brands_path)
         follow_redirect!
         expect(response.body).to include('Model deleted successfully.')
@@ -194,15 +198,19 @@ RSpec.describe ModelsController, type: :request do
     context 'when user logged in as staff' do
       before(:each) do
         sign_in staff
-        delete model_path(@model.id)
       end
 
       it 'deleted failed' do
+        expect { subject }.to_not change(Model, :count)
         expect(Model.count).to eq(2)
         expect(Inventory.count).to eq(2)
       end
+      it 'deleted dependent inventories failed' do
+        expect { subject }.to_not change(Inventory, :count)
+      end
 
       it 'render unauthorized alert message' do
+        subject
         expect(response).to redirect_to(brands_path)
         follow_redirect!
         expect(response.body).to include('You are not authorized.')
@@ -211,7 +219,7 @@ RSpec.describe ModelsController, type: :request do
 
     context 'when user logged out' do
       it 'redirect to log-in page' do
-        delete model_path(@model.id)
+        subject
         expect(response).to redirect_to(new_account_session_path)
       end
     end
