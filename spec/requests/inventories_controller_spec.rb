@@ -177,7 +177,7 @@ RSpec.describe InventoriesController, type: :request do
   describe 'PATCH/PUT /inventories/:id' do
     subject { put inventory_path(inventory.id), params: params }
     let(:inventory) { Inventory.take }
-    let(:params) { {inventory: { memory_size: 1000 }} }
+    let(:params) { { inventory: { memory_size: 1000 } } }
 
     context 'when user signed in' do
       before(:each) do
@@ -198,7 +198,7 @@ RSpec.describe InventoriesController, type: :request do
       end
 
       context 'invalid attributes' do
-      let(:params) { {inventory: { memory_size: nil, color: 'not a color' }} }
+        let(:params) { { inventory: { memory_size: nil, color: 'not a color' } } }
 
         it 'updated failed and re-render' do
           subject
