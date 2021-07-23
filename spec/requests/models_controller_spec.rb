@@ -5,12 +5,12 @@ require 'rails_helper'
 RSpec.describe ModelsController, type: :request do
   let(:manager) { create(:account, role: create(:role)) }
   let(:staff) { create(:account, role: create(:role, name: 'Staff')) }
+  let(:model) { create(:model) }
+  let(:model2) { create(:model, name: 'iPhone 7') }
 
   before(:each) do
-    @model = create(:model)
-    @model2 = create(:model, name: 'iPhone 7')
-    create(:inventory, model: @model)
-    create(:inventory, model: @model)
+    create(:inventory, model: model)
+    create(:inventory, model: model)
   end
 
   # models#create
@@ -50,7 +50,7 @@ RSpec.describe ModelsController, type: :request do
       end
 
       context 'with existed model attributes' do
-        let(:params) { build(:model, name: @model.name).attributes }
+        let(:params) { build(:model, name: model.name).attributes }
 
         it 'created failed' do
           expect { subject }.to_not change(Model, :count)
@@ -90,7 +90,7 @@ RSpec.describe ModelsController, type: :request do
 
   # models#update
   describe 'PATCH /models/update' do
-    subject { patch models_update_path, params: { id: @model.id, new_name: new_name } }
+    subject { patch models_update_path, params: { id: model.id, new_name: new_name } }
     let(:new_name) { 'A new model name' }
 
     context 'when user logged in as manager' do
@@ -101,8 +101,8 @@ RSpec.describe ModelsController, type: :request do
       context 'with valid attributes' do
         it 'updated successfully' do
           subject
-          @model.reload
-          expect(@model.name).to eq('A new model name')
+          model.reload
+          expect(model.name).to eq('A new model name')
         end
 
         it 'routed and rendered notice message successfully' do
@@ -118,8 +118,8 @@ RSpec.describe ModelsController, type: :request do
 
         it 'updated failed' do
           subject
-          @model.reload
-          expect(@model.name).to eq('iPhone X')
+          model.reload
+          expect(model.name).to eq('iPhone X')
         end
 
         it 'routed successfully' do
@@ -129,12 +129,12 @@ RSpec.describe ModelsController, type: :request do
       end
 
       context 'with existed brand attributes' do
-        let(:new_name) { @model2.name }
+        let(:new_name) { model2.name }
 
         it 'updated failed' do
           subject
-          @model.reload
-          expect(@model.name).to eq('iPhone X')
+          model.reload
+          expect(model.name).to eq('iPhone X')
         end
 
         it 'routed successfully' do
@@ -151,8 +151,8 @@ RSpec.describe ModelsController, type: :request do
 
       it 'updated failed' do
         subject
-        @model.reload
-        expect(@model.name).to_not eq('A new model name')
+        model.reload
+        expect(model.name).to_not eq('A new model name')
       end
 
       it 'render unauthorized alert message' do
@@ -173,7 +173,7 @@ RSpec.describe ModelsController, type: :request do
 
   # models#destroy
   describe 'DELETE /models/:id' do
-    subject { delete model_path(@model.id) }
+    subject { delete model_path(model.id) }
 
     context 'when user logged in as manager' do
       before(:each) do
@@ -202,8 +202,6 @@ RSpec.describe ModelsController, type: :request do
 
       it 'deleted failed' do
         expect { subject }.to_not change(Model, :count)
-        expect(Model.count).to eq(2)
-        expect(Inventory.count).to eq(2)
       end
       it 'deleted dependent inventories failed' do
         expect { subject }.to_not change(Inventory, :count)

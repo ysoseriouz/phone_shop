@@ -5,13 +5,13 @@ require 'rails_helper'
 RSpec.describe BrandsController, type: :request do
   let(:manager) { create(:account, role: create(:role)) }
   let(:staff) { create(:account, role: create(:role, name: 'Staff')) }
+  let(:brand1) { create(:brand) }
+  let(:brand2) { create(:brand, name: 'Samsung') }
 
   before(:each) do
-    @brand1 = create(:brand)
-    @brand2 = create(:brand, name: 'Samsung')
-    create(:model, brand: @brand1)
-    create(:model, name: 'iPhone 7', brand: @brand1)
-    create(:model, name: 'Galaxy Note 10', brand: @brand2)
+    create(:model, brand: brand1)
+    create(:model, name: 'iPhone 7', brand: brand1)
+    create(:model, name: 'Galaxy Note 10', brand: brand2)
   end
 
   # brands#index
@@ -135,7 +135,7 @@ RSpec.describe BrandsController, type: :request do
 
   # brands#update
   describe 'PATCH /brands/update' do
-    subject { patch brands_update_path, params: { id: @brand2.id, new_name: new_name } }
+    subject { patch brands_update_path, params: { id: brand2.id, new_name: new_name } }
     let(:new_name) { 'A new brand name' }
 
     context 'when user logged in as manager' do
@@ -146,8 +146,8 @@ RSpec.describe BrandsController, type: :request do
       context 'with valid attributes' do
         it 'updated successfully' do
           subject
-          @brand2.reload
-          expect(@brand2.name).to eq('A new brand name')
+          brand2.reload
+          expect(brand2.name).to eq('A new brand name')
         end
 
         it 'routed and rendered notice message successfully' do
@@ -163,8 +163,8 @@ RSpec.describe BrandsController, type: :request do
 
         it 'updated failed' do
           subject
-          @brand2.reload
-          expect(@brand2.name).to eq('Samsung')
+          brand2.reload
+          expect(brand2.name).to eq('Samsung')
         end
 
         it 'routed successfully' do
@@ -174,12 +174,12 @@ RSpec.describe BrandsController, type: :request do
       end
 
       context 'with existed brand attributes' do
-        let(:new_name) { @brand1.name }
+        let(:new_name) { brand1.name }
 
         it 'updated failed' do
           subject
-          @brand2.reload
-          expect(@brand2.name).to eq('Samsung')
+          brand2.reload
+          expect(brand2.name).to eq('Samsung')
         end
 
         it 'routed successfully' do
@@ -196,8 +196,8 @@ RSpec.describe BrandsController, type: :request do
 
       it 'updated failed' do
         subject
-        @brand2.reload
-        expect(@brand2.name).to eq('Samsung')
+        brand2.reload
+        expect(brand2.name).to eq('Samsung')
       end
 
       it 'render unauthorized alert message' do
@@ -218,7 +218,7 @@ RSpec.describe BrandsController, type: :request do
 
   # brands#destroy
   describe 'DELETE /brands/:id' do
-    subject { delete brand_path(@brand1.id) }
+    subject { delete brand_path(brand1.id) }
     context 'when user logged in as manager' do
       before(:each) do
         sign_in manager
