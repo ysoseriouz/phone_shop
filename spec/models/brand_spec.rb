@@ -25,11 +25,11 @@ RSpec.describe Brand, type: :model do
   end
 
   describe '.create' do
-    let!(:brand) { create(:brand) }
+    let!(:brand) { create(:brand, name: 'A') }
 
     context 'with an existed brand name' do
       it 'is invalid' do
-        new_brand = build(:brand)
+        new_brand = build(:brand, name: 'A')
         expect(new_brand).to_not be_valid
       end
     end

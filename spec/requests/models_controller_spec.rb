@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe ModelsController, type: :request do
   let(:manager) { create(:account, role: create(:role)) }
   let(:staff) { create(:account, role: create(:role, name: 'Staff')) }
-  let(:model) { create(:model) }
+  let(:model) { create(:model, name: 'iPhone X') }
   let(:model2) { create(:model, name: 'iPhone 7') }
 
   before(:each) do
@@ -114,7 +114,7 @@ RSpec.describe ModelsController, type: :request do
       end
 
       context 'with invalid attributes' do
-        let(:new_name) {}
+        let(:new_name) { nil }
 
         it 'updated failed' do
           subject

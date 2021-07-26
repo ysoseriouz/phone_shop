@@ -4,9 +4,9 @@ require 'rails_helper'
 
 RSpec.describe InventoriesController, type: :request do
   before(:each) do
-    brand1 = create(:brand)
+    brand1 = create(:brand, name: 'Apple')
     brand2 = create(:brand, name: 'Samsung')
-    model1 = create(:model, brand: brand1)
+    model1 = create(:model, name: 'iPhone X', brand: brand1)
     model2 = create(:model, name: 'iPhone 7', brand: brand1)
     model3 = create(:model, name: 'Galaxy Note 10', brand: brand2)
 

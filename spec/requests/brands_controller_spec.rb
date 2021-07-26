@@ -5,11 +5,11 @@ require 'rails_helper'
 RSpec.describe BrandsController, type: :request do
   let(:manager) { create(:account, role: create(:role)) }
   let(:staff) { create(:account, role: create(:role, name: 'Staff')) }
-  let(:brand1) { create(:brand) }
+  let(:brand1) { create(:brand, name: 'Apple') }
   let(:brand2) { create(:brand, name: 'Samsung') }
 
   before(:each) do
-    create(:model, brand: brand1)
+    create(:model, name: 'iPhone X', brand: brand1)
     create(:model, name: 'iPhone 7', brand: brand1)
     create(:model, name: 'Galaxy Note 10', brand: brand2)
   end
@@ -91,7 +91,7 @@ RSpec.describe BrandsController, type: :request do
       end
 
       context 'with existed brand attributes' do
-        let(:params) { attributes_for(:brand) }
+        let(:params) { attributes_for(:brand, name: 'Apple') }
 
         it 'created failed' do
           expect { subject }.to_not change(Brand, :count)
@@ -159,7 +159,7 @@ RSpec.describe BrandsController, type: :request do
       end
 
       context 'with invalid attributes' do
-        let(:new_name) {}
+        let(:new_name) { nil }
 
         it 'updated failed' do
           subject
