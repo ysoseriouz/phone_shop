@@ -229,7 +229,7 @@ RSpec.describe BrandsController, type: :request do
       end
 
       it 'deleted dependent models successfully' do
-        expect { subject }.to change(Model, :count).from(3).to(1)
+        expect { subject }.to change(Model, :count).by(-2)
       end
 
       it 'routed and rendered notice message successfully' do
