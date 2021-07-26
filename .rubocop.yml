@@ -1,4 +1,5 @@
 AllCops:
+  NewCops: enable
   TargetRubyVersion: 3.0.1 # change version
   Exclude:
     - "vendor/bundle/**/*"
