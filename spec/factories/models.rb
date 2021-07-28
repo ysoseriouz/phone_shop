@@ -13,7 +13,7 @@
 
 FactoryBot.define do
   factory :model do
-    name { 'iPhone X' }
+    name { Faker::Name.unique.name }
     brand { Brand.first || association(:brand) }
   end
 end

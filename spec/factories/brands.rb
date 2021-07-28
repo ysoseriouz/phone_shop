@@ -12,6 +12,6 @@
 
 FactoryBot.define do
   factory :brand do
-    name { 'Apple' }
+    name { Faker::Name.unique.name }
   end
 end
