@@ -6,28 +6,41 @@ class ModelsController < ApplicationController
   before_action :authorize_account?
   before_action :set_model, only: %i[update destroy]
 
-  def create
+  def create # rubocop:disable Metrics/AbcSize
     @model = Model.new(name: params[:name], brand_id: params[:brand_id])
-    if @model.save
-      redirect_to brands_path, notice: 'New model created successfully.'
-    else
-      redirect_to brands_path, alert: @model.errors.full_messages
+
+    respond_to do |format|
+      if @model.save
+        format.html { redirect_to brands_path, notice: 'New model created successfully.' }
+        format.json { render json: @model, status: :ok }
+      else
+        format.html { redirect_to brands_path, alert: @model.errors.full_messages }
+        format.json { render json: @model.errors, status: :unprocessable_entity }
+      end
     end
   end
 
-  def update
-    if @model.update(name: params[:new_name])
-      redirect_to brands_path, notice: 'Model name updated successfully.'
-    else
-      redirect_to brands_path, alert: @model.errors.full_messages
+  def update # rubocop:disable Metrics/AbcSize
+    respond_to do |format|
+      if @model.update(name: params[:new_name])
+        format.html { redirect_to brands_path, notice: 'Model name updated successfully.' }
+        format.json { render json: @model, status: :ok }
+      else
+        format.html { redirect_to brands_path, alert: @model.errors.full_messages }
+        format.json { render json: @model.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def destroy
-    if @model.destroy
-      redirect_to brands_path, notice: 'Model deleted successfully.'
-    else
-      redirect_to brands_path, alert: @model.errors.full_messages
+    respond_to do |format|
+      if @model.destroy
+        format.html { redirect_to brands_path, notice: 'Model deleted successfully.' }
+        format.json { render json: {}, status: :ok }
+      else
+        format.html { redirect_to brands_path, alert: @model.errors.full_messages }
+        format.json { render json: @model.errors, status: :unprocessable_entity }
+      end
     end
   end
 

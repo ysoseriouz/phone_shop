@@ -10,28 +10,41 @@ class BrandsController < ApplicationController
     @brands = Brand.order(:name)
   end
 
-  def create
+  def create # rubocop:disable Metrics/AbcSize
     @brand = Brand.new(name: params[:name])
-    if @brand.save
-      redirect_to brands_path, notice: 'New brand created successfully.'
-    else
-      redirect_to brands_path, alert: @brand.errors.full_messages
+
+    respond_to do |format|
+      if @brand.save
+        format.html { redirect_to brands_path, notice: 'New brand created successfully.' }
+        format.json { render json: @brand, status: :ok }
+      else
+        format.html { redirect_to brands_path, alert: @brand.errors.full_messages }
+        format.json { render json: @brand.errors, status: :unprocessable_entity }
+      end
     end
   end
 
-  def update
-    if @brand.update(name: params[:new_name])
-      redirect_to brands_path, notice: 'Brand name updated successfully.'
-    else
-      redirect_to brands_path, alert: @brand.errors.full_messages
+  def update # rubocop:disable Metrics/AbcSize
+    respond_to do |format|
+      if @brand.update(name: params[:new_name])
+        format.html { redirect_to brands_path, notice: 'Brand name updated successfully.' }
+        format.json { render json: @brand, status: :ok }
+      else
+        format.html { redirect_to brands_path, alert: @brand.errors.full_messages }
+        format.json { render json: @brand.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def destroy
-    if @brand.destroy
-      redirect_to brands_path, notice: 'Brand deleted successfully.'
-    else
-      redirect_to brands_path, alert: @brand.errors.full_messages
+    respond_to do |format|
+      if @brand.destroy
+        format.html { redirect_to brands_path, notice: 'Brand deleted successfully.' }
+        format.json { render json: {}, status: :ok }
+      else
+        format.html { redirect_to brands_path, alert: @brand.errors.full_messages }
+        format.json { render json: @brand.errors, status: :unprocessable_entity }
+      end
     end
   end
 

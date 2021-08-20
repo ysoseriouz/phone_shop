@@ -18,26 +18,41 @@ class InventoriesController < ApplicationController
   def create
     @inventory = Inventory.new(inventory_params)
 
-    if @inventory.save
-      redirect_to edit_inventory_path(@inventory)
-    else
-      render :new, status: :unprocessable_entity
+    respond_to do |format|
+      if @inventory.save
+        format.html { redirect_to edit_inventory_path(@inventory), notice: 'New inventory created successfully.' }
+        format.json { render :edit, status: :ok, location: @inventory }
+      else
+        format.html { render :new, alert: @inventory.errors.full_messages, status: :unprocessable_entity }
+        format.json { render json: @inventory.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def edit; end
 
   def update
-    if @inventory.update(inventory_params)
-      redirect_to edit_inventory_path(@inventory)
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @inventory.update(inventory_params)
+        format.html { redirect_to edit_inventory_path(@inventory), notice: 'New inventory updated successfully.' }
+        format.json { render :edit, status: :ok, location: @inventory }
+      else
+        format.html { render :edit, alert: @inventory.errors.full_messages, status: :unprocessable_entity }
+        format.json { render json: @inventory.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def destroy
-    @inventory.destroy
-    redirect_to inventories_path
+    respond_to do |format|
+      if @inventory.destroy
+        format.html { redirect_to inventories_path, notice: 'Inventory deleted successfully.' }
+        format.json { render json: {}, status: :ok }
+      else
+        format.html { render :index, alert: @inventory.errors.full_messages, status: :unprocessable_entity }
+        format.json { render json: @inventory.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private

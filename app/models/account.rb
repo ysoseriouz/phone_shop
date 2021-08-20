@@ -12,6 +12,6 @@ class Account < ApplicationRecord
   validates_associated :role
 
   def manager?
-    role.name == 'Manager'
+    role.manager?
   end
 end
