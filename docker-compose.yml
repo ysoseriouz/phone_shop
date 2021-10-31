@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - SA_PASSWORD=DBMS#2021
+      - ACCEPT_EULA=Y
+    volumes:
+      - data_sql2019:/usr/share/sqlserver/data
+    ports:
+      - 1433:1433
+
+volumes:
+  data_sql2019:
+    driver: local
